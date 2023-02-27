@@ -11,10 +11,10 @@
 
 <body>
     <p>Aku adalah angka <b><?php echo $absen ?></b></p>
-    <p>Jika aku dikali 5, maka aku sekarang menjadi <b><?php echo $absen * 5; ?></b></p>
-    <p>Jika aku dibagi 2, maka aku sekarang menjadi <b><?php echo $absen / 2; ?></b></p>
-    <p>Jika aku ditambah 75, maka aku sekarang menjadi <b><?php echo $absen + 75; ?></b></p>
-    <p>Jika aku dikurang 20, maka aku sekarang menjadi <b><?php echo $absen - 20; ?></b></p>
+    <p>Jika aku dikali 5, maka aku sekarang menjadi <b><?php echo $absen *= 5; ?></b></p>
+    <p>Jika aku dibagi 2, maka aku sekarang menjadi <b><?php echo $absen /= 2; ?></b></p>
+    <p>Jika aku ditambah 75, maka aku sekarang menjadi <b><?php echo $absen += 75; ?></b></p>
+    <p>Jika aku dikurang 20, maka aku sekarang menjadi <b><?php echo $absen -= 20; ?></b></p>
 </body>
 
 </html>

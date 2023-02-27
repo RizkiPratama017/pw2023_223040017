@@ -13,6 +13,8 @@
             background-color: red;
             border-style: solid;
             display: grid;
+            text-align: center;
+            line-height: 200px;
         }
 
         .box1 {
@@ -20,9 +22,10 @@
             height: 200px;
             background-color: red;
             border-style: solid;
-            display: flex;
             float: left;
             position: static;
+            text-align: center;
+            line-height: 200px;
         }
 
         .box2 {
@@ -34,17 +37,19 @@
             position: relative;
             top: 203px;
             right: 409px;
+            text-align: center;
+            line-height: 200px;
         }
     </style>
 </head>
 
 <body>
-    <div class="box"></div>
-    <div class="box1"></div>
-    <div class="box1"></div>
-    <div class="box2"></div>
-    <div class="box2"></div>
-    <div class="box2"></div>
+    <div class="box">1</div>
+    <div class="box1">2</div>
+    <div class="box1">2</div>
+    <div class="box2">3</div>
+    <div class="box2">3</div>
+    <div class="box2">3</div>
 </body>
 
 </html>
