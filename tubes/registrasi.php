@@ -1,15 +1,21 @@
 <?php
-require 'koneksi.php';
 if (isset($_POST["register"])) {
+    require 'koneksi.php';
 
-    if (registrasi($_POST) > 0) {
+    $result = registrasi($_POST);
+    if ($result > 0) {
         echo "<script>
-            alert('user baru berhasil ditambahkan');
+            alert('User baru berhasil ditambahkan');
             </script>";
     } else {
-        echo mysqli_error($con);
+        echo "<script>
+            alert('Error: Gagal menambahkan user baru');
+            window.history.back();
+            </script>";
     }
 }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -25,8 +31,8 @@ if (isset($_POST["register"])) {
 </head>
 
 <body class="bg-light">
-    <div class="registrasi w-75 position-absolute top-50 start-50 translate-middle bg-white">
-        <form class="row g-3 " action="" method="post">
+    <div class="register w-75 position-absolute top-50 start-50 translate-middle bg-white">
+        <form class="row g-3 " action="" method="POST">
             <h2>Registrasi</h2>
             <div class="col-md-6">
                 <label for="nama_dpn" class="form-label">Nama Depan</label>
