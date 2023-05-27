@@ -1,6 +1,6 @@
 <?php
 if (isset($_POST['submit'])) {
-    include 'koneksi.php';
+    require 'function.php';
     $user = $_POST['user'];
     $pass = $_POST['pass'];
     $cek = mysqli_query($con, "SELECT * FROM admin WHERE username = '" . $user . "' AND password = '" . $pass . "'");

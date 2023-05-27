@@ -1,8 +1,8 @@
 <?php
 if (isset($_POST["register"])) {
-    require 'koneksi.php';
+    require 'function.php';
 
-    $result = registrasi($_POST);
+    $result = registrasi($conn, $_POST);
     if ($result > 0) {
         echo "<script>
             alert('User baru berhasil ditambahkan');

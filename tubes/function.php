@@ -1,33 +1,36 @@
 <?php
-function registrasi($con, $data)
-{
-    require 'koneksi.php';
-    $nama_dpn = $data['nama_dpn'];
-    $nama_blk = $data['nama_blk'];
-    $username = $data['username'];
-    $password = mysqli_real_escape_string($con, $data['password']);
-    $password2 = mysqli_real_escape_string($con, $data['password2']);
-
-    // Konfirmasi password
-    if ($password !== $password2) {
-        echo "<script>
-            alert('Konfirmasi Password tidak sama');
-        </script>";
-        return false;
+if (!function_exists('koneksi')) {
+    function koneksi()
+    {
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "tubes_pw";
+        $conn = mysqli_connect('localhost', 'root', '', 'tubes_pw') or die('koneksi eror');
+        return $conn;
     }
+}
+if (!function_exists('query')) {
+    function query($query)
+    {
+        $conn = koneksi();
+        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+        $rows = [];
+        while ($row = mysqli_fetch_assoc($result)) {
+            $rows[] = $row;
+        }
 
-    // Enkripsi password
-    $password = password_hash($password, PASSWORD_DEFAULT);
-
-    // Eksekusi query
-    $query = "INSERT INTO admin VALUES ('$nama_dpn', '$nama_blk', '$username', '$password')";
-    print_r($query);
-    $result = mysqli_query($con, $query);
-
-    if (!$result) {
-        echo "Error: " . mysqli_error($con);
-        return false;
+        return $rows;
     }
+}
+if (!function_exists('tambahnasional')) {
+    function tambahnasional($judul, $gambar, $isi)
+    {
+        $conn = koneksi();
 
-    return mysqli_affected_rows($con);
+        $query = "INSERT INTO nasional (judul, gambar, isi) VALUES ('$judul', '$gambar', '$isi')";
+
+        mysqli_query($conn, $query) or die(mysqli_error($conn));
+        return mysqli_affected_rows($conn);
+    }
 }
