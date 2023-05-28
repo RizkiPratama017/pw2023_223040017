@@ -3,7 +3,8 @@ if (isset($_POST['submit'])) {
     require 'function.php';
     $user = $_POST['user'];
     $pass = $_POST['pass'];
-    $cek = mysqli_query($con, "SELECT * FROM admin WHERE username = '" . $user . "' AND password = '" . $pass . "'");
+    $conn = koneksi();
+    $cek = mysqli_query($conn, "SELECT * FROM admin WHERE username = '" . $user . "' AND pass = '" . $pass . "'");
     if (mysqli_num_rows($cek) > 0) {
         echo "<script>
         alert('Login Berhasil');
@@ -58,6 +59,7 @@ if (isset($_POST['submit'])) {
             </div> -->
             <button type="submit" name="submit" class="btn btn-primary">Login</button>
         </form>
+        <a href="registrasi.php">registrasi</a>
     </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>

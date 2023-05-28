@@ -34,3 +34,16 @@ if (!function_exists('tambahnasional')) {
         return mysqli_affected_rows($conn);
     }
 }
+
+
+if (!function_exists('registrasi')) {
+    function registrasi($nama_dpn, $nama_blk, $username, $password)
+    {
+        $conn = koneksi();
+
+        $query = "INSERT INTO admin (nama_dpn, nama_blk, username, pass) VALUES ('$nama_dpn', '$nama_blk', '$username', '$password')";
+
+        mysqli_query($conn, $query) or die(mysqli_error($conn));
+        return mysqli_affected_rows($conn);
+    }
+}
