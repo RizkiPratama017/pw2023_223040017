@@ -47,3 +47,36 @@ if (!function_exists('registrasi')) {
         return mysqli_affected_rows($conn);
     }
 }
+
+// function hashPassword($password)
+// {
+//     return password_hash($password, PASSWORD_DEFAULT);
+// }
+
+// function verifyPassword($password, $hash)
+// {
+//     return password_verify($password, $hash);
+// }
+// function login($username, $password)
+// {
+//     $conn = koneksi();
+
+//     $sql = "SELECT * FROM admin WHERE username = '$username'";
+//     $result = mysqli_query($conn, $sql);
+
+//     if (mysqli_num_rows($result) == 1) {
+//         $row = mysqli_fetch_assoc($result);
+//         $hashedPassword = $row['pass'];
+
+//         if (verifyPassword($password, $hashedPassword)) {
+//             $_SESSION['username'] = $username;
+//             header("Location: dashboard.php");
+//         } else {
+//             echo "Invalid password";
+//         }
+//     } else {
+//         echo "Invalid username";
+//     }
+
+//     mysqli_close($conn);
+// }

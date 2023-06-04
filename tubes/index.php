@@ -1,5 +1,11 @@
 <?php require('function.php');
 $nasional = query("SELECT * From nasional ORDER BY id_nasional DESC LIMIT 4");
+$asean = query("SELECT * From asean ORDER BY id_asean DESC LIMIT 4");
+$ragam = query("SELECT * From ragam ORDER BY id_ragam DESC LIMIT 4");
+$layanan = query("SELECT * From layanan ORDER BY id_layanan DESC LIMIT 4");
+
+
+
 ?>
 <?php require('view/partial/header.php'); ?>
 <?php require('view/partial/nav.php'); ?>
@@ -52,7 +58,7 @@ $nasional = query("SELECT * From nasional ORDER BY id_nasional DESC LIMIT 4");
 <div class="row d-flex justify-content-center">
     <?php foreach ($nasional as $nas) : ?>
         <div class="card col-sm-12 col-md-6 col-lg-4 m-2" style="width: 18rem;">
-            <img src="<?= $nas["gambar"]; ?>" class="card-img-top" alt="Banjir Peminat Membangun IKN">
+            <img src="asset/img/<?= $nas["gambar"]; ?>" class="card-img-top" alt="<?= $nas["judul"]; ?>">
             <div class="card-body">
                 <h5 class="card-title"><a href="#"><?= $nas["judul"]; ?></a></h5>
                 <p class="card-text"><?= $nas["isi"]; ?></p>
@@ -60,33 +66,8 @@ $nasional = query("SELECT * From nasional ORDER BY id_nasional DESC LIMIT 4");
         </div>
     <?php endforeach; ?>
 </div>
-
-<!-- <div class="card col-sm-12 col-md-6 col-lg-4 m-2" style="width: 18rem;">
-        <img src="asset/img/nasional2.jpeg" class="card-img-top" alt="Indonesia Tuntaskan Penanganan 1.841 Kasus Online Scams">
-        <div class="card-body">
-            <h5 class="card-title">Indonesia Tuntaskan Penanganan 1.841 Kasus Online Scams</h5>
-            <p class="card-text">Pemerintah Indonesia terus melakukan penanganan terhadap kejahatan perdagangan manusia di bidang...</p>
-        </div>
-    </div>
-    <div class="card col-sm-12 col-md-6 col-lg-4 m-2" style="width: 18rem;">
-        <img src="asset/img/nasional3.jpeg" class="card-img-top" alt="Otorita IKN Gandeng Siemens Bangun Kota Pintar">
-        <div class="card-body">
-            <h5 class="card-title">Otorita IKN Gandeng Siemens Bangun Kota Pintar
-            </h5>
-            <p class="card-text">Ibu Kota Negara Nusantara dibangun menjadi kota pintar yang menggunakan teknologi digital canggih,...
-
-            </p>
-        </div>
-    </div>
-    <div class="card col-sm-12 col-md-6 col-lg-4 m-2" style="width: 18rem;">
-        <img src="asset/img/nasional4.jpeg" class="card-img-top" alt="Mewujudkan Mimpi di HUT ke-78 RI">
-        <div class="card-body">
-            <h5 class="card-title">Mewujudkan Mimpi di HUT ke-78 RI</h5>
-            <p class="card-text">Kereta cepat Jakarta-Bandung akan memasuki masa uji coba pada Mei 2023 dan beroperasi pada 18...</p>
-        </div>
-    </div> -->
 <div class="card-body text-end me-5">
-    <a href="#" class="card-link">Lihat Selengkapnya ></a>
+    <a href="nasional.php" class="card-link">Lihat Selengkapnya ></a>
 </div>
 </div>
 
@@ -95,41 +76,19 @@ $nasional = query("SELECT * From nasional ORDER BY id_nasional DESC LIMIT 4");
 
     <p class="ms-5 mb-3"> <span class="strip me-2">—</span>Siaran Pers ASEAN 2023 - Ragam ASEAN 2023 -
     </p>
-    <div class="kartu row d-flex justify-content-center">
-        <div class="card col-sm-12 col-md-6 col-lg-4 m-2" style="width: 18rem;">
-            <img src="asset/img/nasional1.jpeg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <div class="row d-flex justify-content-center">
+        <?php foreach ($asean as $sea) : ?>
+            <div class="card col-sm-12 col-md-6 col-lg-4 m-2" style="width: 18rem;">
+                <img src="asset/img/<?= $sea["gambar"]; ?>" class="card-img-top" alt="<?= $sea["judul"]; ?>">
+                <div class="card-body">
+                    <h5 class="card-title"><a href="#"><?= $sea["judul"]; ?></a></h5>
+                    <p class="card-text"><?= $sea["isi"]; ?></p>
+                </div>
             </div>
-        </div>
-        <div class="card col-sm-12 col-md-6 col-lg-4 m-2" style="width: 18rem;">
-            <img src="asset/img/nasional2.jpeg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
-        <div class="card col-sm-12 col-md-6 col-lg-4 m-2" style="width: 18rem;">
-            <img src="asset/img/nasional3.jpeg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
-        <div class="card col-sm-12 col-md-6 col-lg-4 m-2" style="width: 18rem;">
-            <img src="asset/img/nasional4.jpeg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
-        <div class="card-body text-end me-5">
-            <a href="#" class="card-link">Lihat Selengkapnya ></a>
-        </div>
+        <?php endforeach; ?>
+    </div>
+    <div class="card-body text-end me-5">
+        <a href="asean.php" class="card-link">Lihat Selengkapnya ></a>
     </div>
 </div>
 
@@ -137,82 +96,36 @@ $nasional = query("SELECT * From nasional ORDER BY id_nasional DESC LIMIT 4");
 
 <p class="ms-5 mb-3"> <span class="strip me-2">—</span>Budaya - Seni - Keanekaragaman Hayati - Pariwisata - Komoditas - Kuliner
 </p>
-<div class="kartu row d-flex justify-content-center">
-    <div class="card col-sm-12 col-md-6 col-lg-4 m-2" style="width: 18rem;">
-        <img src="asset/img/nasional1.jpeg" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+<div class="row d-flex justify-content-center">
+    <?php foreach ($ragam as $rag) : ?>
+        <div class="card col-sm-12 col-md-6 col-lg-4 m-2" style="width: 18rem;">
+            <img src="asset/img/<?= $rag["gambar"]; ?>" class="card-img-top" alt="<?= $rag["judul"]; ?>">
+            <div class="card-body">
+                <h5 class="card-title"><a href="#"><?= $rag["judul"]; ?></a></h5>
+                <p class="card-text"><?= $rag["isi"]; ?></p>
+            </div>
         </div>
-    </div>
-    <div class="card col-sm-12 col-md-6 col-lg-4 m-2" style="width: 18rem;">
-        <img src="asset/img/nasional2.jpeg" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-    </div>
-    <div class="card col-sm-12 col-md-6 col-lg-4 m-2" style="width: 18rem;">
-        <img src="asset/img/nasional3.jpeg" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-    </div>
-    <div class="card col-sm-12 col-md-6 col-lg-4 m-2" style="width: 18rem;">
-        <img src="asset/img/nasional4.jpeg" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-    </div>
-    <div class="card-body text-end me-5">
-        <a href="#" class="card-link">Lihat Selengkapnya ></a>
-    </div>
+    <?php endforeach; ?>
 </div>
+<div class="card-body text-end me-5">
+    <a href="ragam.php" class="card-link">Lihat Selengkapnya ></a>
+</div>
+
 <h2 class="mt-5 ms-3"> <a href="#">🫱🏻‍🫲🏻 Layanan</a></h2>
 
 <p class="ms-5 mb-3"> <span class="strip me-2">—</span>Pendidikan - Kesehatan - Keuangan - Kependudukan - Perdagangan - Investasi - Kepabeanan - Keimigrasian - Berita -
 </p>
-<div class="kartu row d-flex justify-content-center">
-    <div class="card col-sm-12 col-md-6 col-lg-4 m-2" style="width: 18rem;">
-        <img src="asset/img/nasional1.jpeg" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+<<div class="row d-flex justify-content-center">
+    <?php foreach ($layanan as $lay) : ?>
+        <div class="card col-sm-12 col-md-6 col-lg-4 m-2" style="width: 18rem;">
+            <img src="asset/img/<?= $lay["gambar"]; ?>" class="card-img-top" alt="<?= $lay["judul"]; ?>">
+            <div class="card-body">
+                <h5 class="card-title"><a href="#"><?= $lay["judul"]; ?></a></h5>
+                <p class="card-text"><?= $lay["isi"]; ?></p>
+            </div>
         </div>
-    </div>
-    <div class="card col-sm-12 col-md-6 col-lg-4 m-2" style="width: 18rem;">
-        <img src="asset/img/nasional2.jpeg" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-    </div>
-    <div class="card col-sm-12 col-md-6 col-lg-4 m-2" style="width: 18rem;">
-        <img src="asset/img/nasional3.jpeg" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-    </div>
-    <div class="card col-sm-12 col-md-6 col-lg-4 m-2" style="width: 18rem;">
-        <img src="asset/img/nasional4.jpeg" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-    </div>
+    <?php endforeach; ?>
     <div class="card-body text-end me-5">
-        <a href="#" class="card-link">Lihat Selengkapnya ></a>
+        <a href="layanan.php" class="card-link">Lihat Selengkapnya ></a>
     </div>
-</div>
-<?php require('view/partial/footer.php') ?>
+    <?php require('view/partial/footer.php') ?>

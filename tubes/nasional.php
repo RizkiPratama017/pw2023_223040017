@@ -65,7 +65,7 @@ $nasional = query("SELECT * From nasional ORDER BY id_nasional DESC LIMIT 12");
 <div class="row  d-flex justify-content-center ">
     <?php foreach ($nasional as $nas) : ?>
         <div class="card col-sm-12 col-md-6 col-lg-4 m-2" style="width: 18rem;">
-            <img src="<?= $nas["gambar"]; ?>" class="card-img-top" alt="...">
+            <img src="asset/img/<?= $nas["gambar"]; ?>" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title"><?= $nas["judul"]; ?></h5>
                 <p class="card-text"><?= $nas["text"]; ?></p>
