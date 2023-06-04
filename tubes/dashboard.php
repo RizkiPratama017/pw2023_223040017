@@ -1,3 +1,8 @@
+<?php require('function.php');
+require('view/partial/header.php');
+$nasional = query("SELECT * From nasional ORDER BY id_nasional DESC LIMIT 1");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -198,8 +203,21 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Selamat Datang</h1>
+                    <div class="row  d-flex justify-content-center ">
+                        <?php foreach ($nasional as $nas) : ?>
+                            <div class="card col-sm-12 col-md-6 col-lg-4 m-2" style="width: 18rem;">
+                                <img src="asset/img/<?= $nas["gambar"]; ?>" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title"><?= $nas["judul"]; ?></h5>
+                                    <p class="card-text"><?= $nas["id_nasional"]; ?>. <?= $nas["isi"]; ?></p>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                        <div class="card-body text-end me-5">
+                            <a href="nasionaladmin.php" class="card-link">Lihat Selengkapnya ></a>
+                        </div>
 
+                    </div>
                 </div>
                 <!-- /.container-fluid -->
 

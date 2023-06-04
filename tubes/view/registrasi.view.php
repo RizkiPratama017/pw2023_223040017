@@ -1,28 +1,25 @@
 <?php
+require('view/partial/header.php');
+
 session_start();
 
-// Fungsi untuk menghubungkan ke database
 require('function.php');
-// Fungsi untuk melakukan registrasi
 function register($namaDepan, $namaBelakang, $username, $password)
 {
     $conn = koneksi();
 
-    // Periksa apakah username sudah digunakan
     $sql = "SELECT * FROM admin WHERE username = '$username'";
     $result = mysqli_query($conn, $sql);
 
     if (mysqli_num_rows($result) > 0) {
         $error = "Username sudah digunakan";
     } else {
-        // Hash password sebelum disimpan ke database
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-        // Simpan data ke database
         $sql = "INSERT INTO admin (nama_dpn, nama_blk, username, pass) VALUES ('$namaDepan', '$namaBelakang', '$username', '$hashedPassword')";
         if (mysqli_query($conn, $sql)) {
             $_SESSION['username'] = $username;
-            header("Location: dashboard.php");
+            header("Location: login.php");
             exit;
         } else {
             $error = "Gagal melakukan registrasi";
@@ -34,12 +31,11 @@ function register($namaDepan, $namaBelakang, $username, $password)
     return $error;
 }
 
-// Proses registrasi jika form registrasi telah disubmit
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $namaDepan = $_POST['namaDepan'];
-    $namaBelakang = $_POST['namaBelakang'];
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    $namaDepan = htmlspecialchars($_POST['namaDepan']);
+    $namaBelakang = htmlspecialchars($_POST['namaBelakang']);
+    $username = htmlspecialchars($_POST['username']);
+    $password = htmlspecialchars($_POST['password']);
 
     $error = register($namaDepan, $namaBelakang, $username, $password);
 }

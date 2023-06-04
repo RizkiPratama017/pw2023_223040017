@@ -9,6 +9,7 @@ if (isset($_POST["tambah"])) {
         echo " <script>
             alert('data berhasil ditambahkan');
         </script>";
+        header("Location: dashboard.php");
     }
 }
 require('view/tambahnasional.view.php');

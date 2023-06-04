@@ -50,11 +50,10 @@ $nasional = query("SELECT * From nasional ORDER BY id_nasional DESC LIMIT 12");
     <title>Laman Indonesia</title>
 </head>
 
-<?php require('view/partial/nav.php') ?>
 
 <div class="background-wrapper link-light">
     <h2 class="mt-5 ms-3">Nasional</h2>
-    <a href="" class="link-light ms-4">Beranda</a>
+    <a href="dashboard.php" class="link-light ms-4">Beranda</a>
     <div class="layer"></div>
     <div class="background-image"></div>
 </div>
@@ -68,9 +67,14 @@ $nasional = query("SELECT * From nasional ORDER BY id_nasional DESC LIMIT 12");
             <img src="asset/img/<?= $nas["gambar"]; ?>" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title"><?= $nas["judul"]; ?></h5>
-                <p class="card-text"><?= $nas["isi"]; ?></p>
+                <p class="card-text"> <?= $nas["isi"]; ?></p>
+                <a href="edit.php">edit</a>
+                <br>
+                <a href="hapusnas.php?id=<?= $nas["id_nasional"]; ?>" onclick="return confirm('yakin akan dihapus');">hapus</a>
+
             </div>
         </div>
     <?php endforeach; ?>
 </div>
+
 <?php require('view/partial/footer.php') ?>

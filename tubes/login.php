@@ -1,9 +1,8 @@
 <?php
+require('view/partial/header.php');
 session_start();
 
-// Fungsi untuk menghubungkan ke database
 require('function.php');
-// Fungsi untuk melakukan login
 function login($username, $password)
 {
     $conn = koneksi();
@@ -31,7 +30,6 @@ function login($username, $password)
     return $error;
 }
 
-// Proses login jika form login telah disubmit
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -52,13 +50,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php if (isset($error)) { ?>
         <p><?php echo $error; ?></p>
     <?php } ?>
-    <form method="POST" action="">
-        <label for="username">Username:</label>
-        <input type="text" name="username" id="username" required><br><br>
-        <label for="password">Password:</label>
-        <input type="password" name="password" id="password" required><br><br>
-        <input type="submit" value="Login">
-    </form>
+    <div>
+        <form method="POST" action="">
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" required><br><br>
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" required><br><br>
+            <input type="submit" value="Login">
+        </form>
+        <p><a href="registrasi.php">Registrasi</a></p>
+    </div>
 </body>
 
 </html>
