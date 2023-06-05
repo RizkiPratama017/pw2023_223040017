@@ -45,6 +45,24 @@ if (!function_exists('hapusnasional')) {
         return mysqli_affected_rows($conn);
     }
 }
+if (!function_exists('editnas')) {
+    function editnas($id, $judul, $gambar, $isi)
+    {
+        $conn = koneksi();
+
+        $query = "UPDATE nasional SET 
+            judul = '$judul',
+            gambar = '$gambar',
+            isi = '$isi'
+            WHERE id_nasional = '$id'
+            ";
+
+        mysqli_query($conn, $query) or die(mysqli_error($conn));
+        return mysqli_affected_rows($conn);
+    }
+}
+
+
 
 if (!function_exists('registrasi')) {
     function registrasi($nama_dpn, $nama_blk, $username, $password)

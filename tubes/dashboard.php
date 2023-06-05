@@ -1,5 +1,5 @@
 <?php require('function.php');
-require('view/partial/header.php');
+require('partial/header.php');
 $nasional = query("SELECT * From nasional ORDER BY id_nasional DESC LIMIT 1");
 ?>
 

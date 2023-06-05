@@ -130,3 +130,7 @@ a {
 a {
   text-decoration: none;
 }
+
+.footer-icon {
+  max-width: 200px;
+}

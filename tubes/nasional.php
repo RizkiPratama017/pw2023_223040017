@@ -1,5 +1,5 @@
 <?php require('function.php');
-require('view/partial/header.php');
+require('partial/header.php');
 $nasional = query("SELECT * From nasional ORDER BY id_nasional DESC LIMIT 12");
 ?>
 <!doctype html>
@@ -50,11 +50,11 @@ $nasional = query("SELECT * From nasional ORDER BY id_nasional DESC LIMIT 12");
     <title>Laman Indonesia</title>
 </head>
 
-<?php require('view/partial/nav.php') ?>
+<?php require('partial/nav.php') ?>
 
 <div class="background-wrapper link-light">
     <h2 class="mt-5 ms-3">Nasional</h2>
-    <a href="" class="link-light ms-4">Beranda</a>
+    <a href="index.php" class="link-light ms-4">Beranda</a>
     <div class="layer"></div>
     <div class="background-image"></div>
 </div>
@@ -73,4 +73,4 @@ $nasional = query("SELECT * From nasional ORDER BY id_nasional DESC LIMIT 12");
         </div>
     <?php endforeach; ?>
 </div>
-<?php require('view/partial/footer.php') ?>
+<?php require('partial/footer.php') ?>

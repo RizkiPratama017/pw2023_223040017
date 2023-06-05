@@ -1,4 +1,5 @@
 <?php require('function.php');
+$nasionalup = query("SELECT * From nasional ORDER BY id_nasional DESC LIMIT 1");
 $nasional = query("SELECT * From nasional ORDER BY id_nasional DESC LIMIT 4");
 $asean = query("SELECT * From asean ORDER BY id_asean DESC LIMIT 4");
 $ragam = query("SELECT * From ragam ORDER BY id_ragam DESC LIMIT 4");
@@ -7,36 +8,48 @@ $layanan = query("SELECT * From layanan ORDER BY id_layanan DESC LIMIT 4");
 
 
 ?>
-<?php require('view/partial/header.php'); ?>
-<?php require('view/partial/nav.php'); ?>
+<?php require('partial/header.php'); ?>
+<?php require('partial/nav.php'); ?>
 <!-- atas -->
 <div id="carouselExampleCaptions m-2" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 4"></button>
     </div>
     <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="asset/img/news1.jpg" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-                <h5>Pembukaan KTT ke-42 ASEAN Resmi Dibuka</h5>
-                <p>Some representative placeholder content for the first slide.</p>
+        <?php foreach ($nasionalup as $nasi) : ?>
+            <div class="carousel-item active">
+                <img src="asset/img/<?= $nasi["gambar"]; ?>" class="w-100 img-fluid" alt="<?= $nasi["judul"]; ?>">
+                <div class="carousel-caption  d-md-block">
+                    <h4><?= $nasi["judul"]; ?></h4>
+                </div>
             </div>
+        <?php endforeach; ?>
+        <div class="carousel-item">
+            <?php foreach ($nasionalup as $nasi) : ?>
+                <img src="asset/img/<?= $nas["gambar"]; ?>" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h4><?= $nas["judul"]; ?></h4>
+                </div>
+            <?php endforeach; ?>
         </div>
         <div class="carousel-item">
-            <img src="asset/img/news2.jpg" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-                <h5>Sepeda Bambu Cendera Mata KTT ASEAN</h5>
-                <p>Some representative placeholder content for the second slide.</p>
-            </div>
+            <?php foreach ($nasionalup as $nasi) : ?>
+                <img src="asset/img/<?= $nas["gambar"]; ?>" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h4><?= $nas["judul"]; ?></h4>
+                </div>
+            <?php endforeach; ?>
         </div>
         <div class="carousel-item">
-            <img src="asset/img/news3.jpg" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-                <h5>Pemimpin Negara ASEAN Menikmati Labuan Bajo</h5>
-                <p>Some representative placeholder content for the third slide.</p>
-            </div>
+            <?php foreach ($nasionalup as $nasi) : ?>
+                <img src="asset/img/<?= $nas["gambar"]; ?>" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h4><?= $nas["judul"]; ?></h4>
+                </div>
+            <?php endforeach; ?>
         </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
@@ -128,4 +141,4 @@ $layanan = query("SELECT * From layanan ORDER BY id_layanan DESC LIMIT 4");
     <div class="card-body text-end me-5">
         <a href="layanan.php" class="card-link">Lihat Selengkapnya ></a>
     </div>
-    <?php require('view/partial/footer.php') ?>
+    <?php require('partial/footer.php') ?>

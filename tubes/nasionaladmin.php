@@ -1,5 +1,5 @@
 <?php require('function.php');
-require('view/partial/header.php');
+require('partial/header.php');
 $nasional = query("SELECT * From nasional ORDER BY id_nasional DESC LIMIT 12");
 ?>
 <!doctype html>
@@ -68,13 +68,13 @@ $nasional = query("SELECT * From nasional ORDER BY id_nasional DESC LIMIT 12");
             <div class="card-body">
                 <h5 class="card-title"><?= $nas["judul"]; ?></h5>
                 <p class="card-text"> <?= $nas["isi"]; ?></p>
-                <a href="edit.php">edit</a>
+                <a href="edit/editnas.php?id=<?= $nas["id_nasional"]; ?>">edit</a>
                 <br>
-                <a href="hapusnas.php?id=<?= $nas["id_nasional"]; ?>" onclick="return confirm('yakin akan dihapus');">hapus</a>
+                <a href="hapus/hapusnas.php?id=<?= $nas["id_nasional"]; ?>" onclick="return confirm('yakin akan dihapus');">hapus</a>
 
             </div>
         </div>
     <?php endforeach; ?>
 </div>
 
-<?php require('view/partial/footer.php') ?>
+<?php require('partial/footer.php') ?>
