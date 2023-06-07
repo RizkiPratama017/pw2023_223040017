@@ -1,6 +1,9 @@
 <?php require('function.php');
 require('partial/header.php');
 $nasional = query("SELECT * From nasional ORDER BY id_nasional DESC LIMIT 1");
+$asean = query("SELECT * From asean ORDER BY id_asean DESC LIMIT 1");
+$ragam = query("SELECT * From ragam ORDER BY id_ragam DESC LIMIT 1");
+$layanan = query("SELECT * From layanan ORDER BY id_layanan DESC LIMIT 1");
 ?>
 
 <!DOCTYPE html>
@@ -69,9 +72,9 @@ $nasional = query("SELECT * From nasional ORDER BY id_nasional DESC LIMIT 1");
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Components:</h6>
                         <a class="collapse-item" href="tambahnasional.php">Tambah Nasional</a>
-                        <a class="collapse-item" href="buttons.html">Tambah Asean</a>
-                        <a class="collapse-item" href="cards.html">Tambah Ragam</a>
-                        <a class="collapse-item" href="buttons.html">Tambah Layanan</a>
+                        <a class="collapse-item" href="tambahasean.php">Tambah Asean</a>
+                        <a class="collapse-item" href="tambahragam.php">Tambah Ragam</a>
+                        <a class="collapse-item" href="tambahlayanan.php">Tambah Layanan</a>
                     </div>
                 </div>
             </li>
@@ -215,6 +218,51 @@ $nasional = query("SELECT * From nasional ORDER BY id_nasional DESC LIMIT 1");
                         <?php endforeach; ?>
                         <div class="card-body text-end me-5">
                             <a href="nasionaladmin.php" class="card-link">Lihat Selengkapnya ></a>
+                        </div>
+
+                    </div>
+                    <div class="row  d-flex justify-content-center ">
+                        <?php foreach ($asean as $sea) : ?>
+                            <div class="card col-sm-12 col-md-6 col-lg-4 m-2" style="width: 18rem;">
+                                <img src="asset/img/<?= $sea["gambar"]; ?>" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title"><?= $sea["judul"]; ?></h5>
+                                    <p class="card-text"><?= $sea["id_asean"]; ?>. <?= $sea["isi"]; ?></p>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                        <div class="card-body text-end me-5">
+                            <a href="aseanadmin.php" class="card-link">Lihat Selengkapnya ></a>
+                        </div>
+
+                    </div>
+                    <div class="row  d-flex justify-content-center ">
+                        <?php foreach ($ragam as $rag) : ?>
+                            <div class="card col-sm-12 col-md-6 col-lg-4 m-2" style="width: 18rem;">
+                                <img src="asset/img/<?= $rag["gambar"]; ?>" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title"><?= $rag["judul"]; ?></h5>
+                                    <p class="card-text"><?= $rag["id_ragam"]; ?>. <?= $rag["isi"]; ?></p>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                        <div class="card-body text-end me-5">
+                            <a href="ragamadmin.php" class="card-link">Lihat Selengkapnya ></a>
+                        </div>
+
+                    </div>
+                    <div class="row  d-flex justify-content-center ">
+                        <?php foreach ($layanan as $lay) : ?>
+                            <div class="card col-sm-12 col-md-6 col-lg-4 m-2" style="width: 18rem;">
+                                <img src="asset/img/<?= $lay["gambar"]; ?>" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title"><?= $lay["judul"]; ?></h5>
+                                    <p class="card-text"><?= $lay["id_layanan"]; ?>. <?= $lay["isi"]; ?></p>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                        <div class="card-body text-end me-5">
+                            <a href="layananadmin.php" class="card-link">Lihat Selengkapnya ></a>
                         </div>
 
                     </div>

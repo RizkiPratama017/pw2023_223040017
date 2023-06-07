@@ -1,4 +1,4 @@
-<footer class="footer mt-auto py-3 bg-danger text-white">
+<footer class=" footer mt-auto py-3 bg-danger text-white">
     <div class="container">
         <span>Portal Informasi Indonesia © 2023</span>
         <span class="ikon float-end "><a href=""><img src="asset/ikon/fb.png" alt="facebook" class="footer-icon m-1"></a><a href=""><img src="asset/ikon/ig.png" alt="Instagram" class="footer-icon m-1"></a><a href=""><img src="asset/ikon/tw.png" alt="Twitter" class="footer-icon m-1"></a><a href=""><img src="asset/ikon/yt.png" alt="Youtube" class="footer-icon m-1"></a></span>

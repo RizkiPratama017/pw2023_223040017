@@ -34,6 +34,39 @@ if (!function_exists('tambahnasional')) {
         return mysqli_affected_rows($conn);
     }
 }
+if (!function_exists('tambahasean')) {
+    function tambahasean($judul, $gambar, $isi)
+    {
+        $conn = koneksi();
+
+        $query = "INSERT INTO asean (judul, gambar, isi) VALUES ('$judul', '$gambar', '$isi')";
+
+        mysqli_query($conn, $query) or die(mysqli_error($conn));
+        return mysqli_affected_rows($conn);
+    }
+}
+if (!function_exists('tambahragam')) {
+    function tambahragam($judul, $gambar, $isi)
+    {
+        $conn = koneksi();
+
+        $query = "INSERT INTO ragam (judul, gambar, isi) VALUES ('$judul', '$gambar', '$isi')";
+
+        mysqli_query($conn, $query) or die(mysqli_error($conn));
+        return mysqli_affected_rows($conn);
+    }
+}
+if (!function_exists('tambahlayanan')) {
+    function tambahlayanan($judul, $gambar, $isi)
+    {
+        $conn = koneksi();
+
+        $query = "INSERT INTO layanan (judul, gambar, isi) VALUES ('$judul', '$gambar', '$isi')";
+
+        mysqli_query($conn, $query) or die(mysqli_error($conn));
+        return mysqli_affected_rows($conn);
+    }
+}
 
 if (!function_exists('hapusnasional')) {
     function hapusnasional($id)
@@ -41,6 +74,36 @@ if (!function_exists('hapusnasional')) {
         $conn = koneksi();
 
         mysqli_query($conn, "DELETE FROM nasional WHERE id_nasional = $id");
+
+        return mysqli_affected_rows($conn);
+    }
+}
+if (!function_exists('hapusasean')) {
+    function hapusasean($id)
+    {
+        $conn = koneksi();
+
+        mysqli_query($conn, "DELETE FROM asean WHERE id_asean = $id");
+
+        return mysqli_affected_rows($conn);
+    }
+}
+if (!function_exists('hapusragam')) {
+    function hapusragam($id)
+    {
+        $conn = koneksi();
+
+        mysqli_query($conn, "DELETE FROM ragam WHERE id_ragam = $id");
+
+        return mysqli_affected_rows($conn);
+    }
+}
+if (!function_exists('hapuslayanan')) {
+    function hapusnasional($id)
+    {
+        $conn = koneksi();
+
+        mysqli_query($conn, "DELETE FROM layanan WHERE id_layanan = $id");
 
         return mysqli_affected_rows($conn);
     }
@@ -74,4 +137,42 @@ if (!function_exists('registrasi')) {
         mysqli_query($conn, $query) or die(mysqli_error($conn));
         return mysqli_affected_rows($conn);
     }
+}
+function countRows()
+{
+    $conn = koneksi();
+    $result = mysqli_query($conn, "SELECT COUNT(*) AS total_rows FROM nasional
+    UNION SELECT COUNT(*) AS total_rows FROM asean
+    UNION SELECT COUNT(*) AS total_rows FROM ragam
+    UNION SELECT COUNT(*) AS total_rows FROM layanan");
+    $row = mysqli_fetch_assoc($result);
+    return $row['total_rows'];
+}
+function countRowsnas()
+{
+    $conn = koneksi();
+    $result = mysqli_query($conn, "SELECT COUNT(*) AS total_rows FROM nasional");
+    $row = mysqli_fetch_assoc($result);
+    return $row['total_rows'];
+}
+function countRowssea()
+{
+    $conn = koneksi();
+    $result = mysqli_query($conn, "SELECT COUNT(*) AS total_rows FROM asean");
+    $row = mysqli_fetch_assoc($result);
+    return $row['total_rows'];
+}
+function countRowsrag()
+{
+    $conn = koneksi();
+    $result = mysqli_query($conn, "SELECT COUNT(*) AS total_rows FROM ragam");
+    $row = mysqli_fetch_assoc($result);
+    return $row['total_rows'];
+}
+function countRowslay()
+{
+    $conn = koneksi();
+    $result = mysqli_query($conn, "SELECT COUNT(*) AS total_rows FROM layanan");
+    $row = mysqli_fetch_assoc($result);
+    return $row['total_rows'];
 }

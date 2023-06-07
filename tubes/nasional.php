@@ -1,54 +1,16 @@
 <?php require('function.php');
 require('partial/header.php');
-$nasional = query("SELECT * From nasional ORDER BY id_nasional DESC LIMIT 12");
+$limit = 12;
+$page = isset($_GET['page']) ? $_GET['page'] : 1;
+
+$offset = ($page - 1) * $limit;
+
+$nasional = query("SELECT * FROM nasional ORDER BY id_nasional DESC LIMIT $limit OFFSET $offset");
+
+$total_rows = countRowsnas();
+$total_pages = ceil($total_rows / $limit);
+
 ?>
-<!doctype html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <style>
-        .background-wrapper {
-            position: relative;
-            overflow: hidden;
-            height: 190px;
-            background: linear-gradient(to right, rgba(206, 17, 38, 1), rgba(206, 17, 38, 0.5));
-        }
-
-        .background-color {
-            position: absolute;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            width: 50%;
-        }
-
-        .background-image {
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            width: 50%;
-            background-image: url("img/bg.png");
-            background-repeat: no-repeat;
-            background-size: contain;
-            background-position: center;
-            z-index: 1;
-
-        }
-
-        a {
-            text-decoration: none;
-        }
-    </style>
-    <title>Laman Indonesia</title>
-</head>
 
 <?php require('partial/nav.php') ?>
 
@@ -73,4 +35,22 @@ $nasional = query("SELECT * From nasional ORDER BY id_nasional DESC LIMIT 12");
         </div>
     <?php endforeach; ?>
 </div>
+<div class="pagination justify-content-center">
+    <?php if ($page > 1) : ?>
+        <a href="nasionaladmin.php?page=<?= $page - 1; ?>" class="page-link">&laquo; Halaman Sebelumnya</a>
+    <?php endif; ?>
+
+    <?php for ($i = 1; $i <= $total_pages; $i++) : ?>
+        <?php if ($i == $page) : ?>
+            <a href="nasionaladmin.php?page=<?= $i; ?>" class="page-link active"><?= $i; ?></a>
+        <?php else : ?>
+            <a href="nasionaladmin.php?page=<?= $i; ?>" class="page-link"><?= $i; ?></a>
+        <?php endif; ?>
+    <?php endfor; ?>
+
+    <?php if ($page < $total_pages) : ?>
+        <a href="nasionaladmin.php?page=<?= $page + 1; ?>" class="page-link">Halaman Selanjutnya &raquo;</a>
+    <?php endif; ?>
+</div>
+
 <?php require('partial/footer.php') ?>

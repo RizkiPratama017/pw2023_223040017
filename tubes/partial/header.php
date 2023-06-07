@@ -11,42 +11,21 @@
     <!-- css -->
     <link rel="stylesheet" href="css/main.css">
     <style>
+        .background-image {
+            background-image: url("img/bg.png");
+        }
+
         .footer-icon {
             max-width: 30px;
         }
 
-        .background-wrapper {
-            position: relative;
-            overflow: hidden;
-            height: 190px;
-            background: linear-gradient(to right, rgba(206, 17, 38, 1), rgba(206, 17, 38, 0.5));
-        }
-
-        .background-color {
-            position: absolute;
-            top: 0;
-            left: 0;
+        /* .footer {
+            position: fixed;
             bottom: 0;
-            width: 50%;
-        }
-
-        .background-image {
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            width: 50%;
-            background-image: url("img/bg.png");
-            background-repeat: no-repeat;
-            background-size: contain;
-            background-position: center;
-            z-index: 1;
-
-        }
-
-        a {
-            text-decoration: none;
-        }
+            width: 100%;
+            height: 70px;
+            background-color: #f5f5f5;
+        } */
     </style>
     <title>Laman Indonesia</title>
 </head>

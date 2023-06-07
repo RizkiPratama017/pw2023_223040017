@@ -6,8 +6,11 @@ require('partial/nav.php');
 if (isset($_GET['search'])) {
     $keyword = $_GET['keyword'];
 
-    $query = "SELECT * FROM nasional WHERE judul LIKE '%$keyword%' OR isi LIKE '%$keyword%'";
-    $nasional = query($query);
+    $query = "SELECT * FROM nasional WHERE judul LIKE '%$keyword%' OR isi LIKE '%$keyword%'
+    UNION SELECT * FROM asean WHERE judul LIKE '%$keyword%' OR isi LIKE '%$keyword%'
+    UNION SELECT * FROM ragam WHERE judul LIKE '%$keyword%' OR isi LIKE '%$keyword%'
+    UNION SELECT * FROM layanan WHERE judul LIKE '%$keyword%' OR isi LIKE '%$keyword%'";
+    $hasil = query($query);
 } else {
     $nasional = [];
 }
@@ -21,21 +24,21 @@ if (isset($_GET['search'])) {
 </div>
 
 <br>
-<?php if (!empty($nasional)) : ?>
+<?php if (!empty($hasil)) : ?>
     <div class="row d-flex justify-content-center">
-        <?php foreach ($nasional as $nas) : ?>
+        <?php foreach ($hasil as $has) : ?>
             <div class="card col-sm-12 col-md-6 col-lg-4 m-2" style="width: 18rem;">
-                <img src="asset/img/<?= $nas["gambar"]; ?>" class="card-img-top" alt="...">
+                <img src="asset/img/<?= $has["gambar"]; ?>" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title"><?= $nas["judul"]; ?></h5>
-                    <p class="card-text"><?= $nas["isi"]; ?></p>
+                    <h5 class="card-title"><?= $has["judul"]; ?></h5>
+                    <p class="card-text"><?= $has["isi"]; ?></p>
                 </div>
             </div>
         <?php endforeach; ?>
     </div>
 <?php else : ?>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12 text-center">
             <div class="alert alert-danger" role="alert">
                 Tidak ada data!!
             </div>

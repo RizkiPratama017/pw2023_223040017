@@ -120,7 +120,7 @@ a {
   right: 0;
   bottom: 0;
   width: 50%;
-  background-image: url("img/bg.png");
+  background-image: url("../img/bg.png");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -129,8 +129,4 @@ a {
 
 a {
   text-decoration: none;
-}
-
-.footer-icon {
-  max-width: 200px;
 }
