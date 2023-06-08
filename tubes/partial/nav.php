@@ -17,7 +17,33 @@
                 <li class="nav-item">
                     <a class="nav-link" href="nasional.php">Nasional</a>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item">
+                    <a class="nav-link" href="asean.php">Asean</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="ragam.php">ragam</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="layanan.php">Layanan</a>
+                </li>
+
+            </ul>
+            <form class="d-flex" action="result.php" method="get">
+                <input class="form-control me-2" type="search" name="keyword" placeholder="cari.." autofocus autocomplete="off">
+                <button class="btn btn-outline-success" type="submit" name="search">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+
+
+
+
+
+
+
+<!-- <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Ragam
                     </a>
@@ -52,12 +78,4 @@
                         <li><a class="dropdown-item" href="siaranasean.php">Siaran Pers Asean 2023</a></li>
                         <li><a class="dropdown-item" href="ragamasean.php">Ragam Asean 2023</a></li>
                     </ul>
-                </li>
-            </ul>
-            <form class="d-flex" action="result.php" method="get">
-                <input class="form-control me-2" type="search" name="keyword" placeholder="cari.." autofocus autocomplete="off">
-                <button class="btn btn-outline-success" type="submit" name="search">Search</button>
-            </form>
-        </div>
-    </div>
-</nav>
+                </li> -->

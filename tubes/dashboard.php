@@ -71,10 +71,10 @@ $layanan = query("SELECT * From layanan ORDER BY id_layanan DESC LIMIT 1");
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="tambahnasional.php">Tambah Nasional</a>
-                        <a class="collapse-item" href="tambahasean.php">Tambah Asean</a>
-                        <a class="collapse-item" href="tambahragam.php">Tambah Ragam</a>
-                        <a class="collapse-item" href="tambahlayanan.php">Tambah Layanan</a>
+                        <a class="collapse-item" href="tambah/tambahnasional.php">Tambah Nasional</a>
+                        <a class="collapse-item" href="tambah/tambahasean.php">Tambah Asean</a>
+                        <a class="collapse-item" href="tambah/tambahragam.php">Tambah Ragam</a>
+                        <a class="collapse-item" href="tambah/tambahlayanan.php">Tambah Layanan</a>
                     </div>
                 </div>
             </li>
@@ -207,6 +207,7 @@ $layanan = query("SELECT * From layanan ORDER BY id_layanan DESC LIMIT 1");
 
                     <!-- Page Heading -->
                     <div class="row  d-flex justify-content-center ">
+                        <h2>Nasional</h2>
                         <?php foreach ($nasional as $nas) : ?>
                             <div class="card col-sm-12 col-md-6 col-lg-4 m-2" style="width: 18rem;">
                                 <img src="asset/img/<?= $nas["gambar"]; ?>" class="card-img-top" alt="...">
@@ -217,11 +218,12 @@ $layanan = query("SELECT * From layanan ORDER BY id_layanan DESC LIMIT 1");
                             </div>
                         <?php endforeach; ?>
                         <div class="card-body text-end me-5">
-                            <a href="nasionaladmin.php" class="card-link">Lihat Selengkapnya ></a>
+                            <a href="admin/nasionaladmin.php" class="card-link">Lihat Selengkapnya ></a>
                         </div>
 
                     </div>
                     <div class="row  d-flex justify-content-center ">
+                        <h2>Asean</h2>
                         <?php foreach ($asean as $sea) : ?>
                             <div class="card col-sm-12 col-md-6 col-lg-4 m-2" style="width: 18rem;">
                                 <img src="asset/img/<?= $sea["gambar"]; ?>" class="card-img-top" alt="...">
@@ -232,11 +234,12 @@ $layanan = query("SELECT * From layanan ORDER BY id_layanan DESC LIMIT 1");
                             </div>
                         <?php endforeach; ?>
                         <div class="card-body text-end me-5">
-                            <a href="aseanadmin.php" class="card-link">Lihat Selengkapnya ></a>
+                            <a href="admin/aseanadmin.php" class="card-link">Lihat Selengkapnya ></a>
                         </div>
 
                     </div>
                     <div class="row  d-flex justify-content-center ">
+                        <h2>Ragam</h2>
                         <?php foreach ($ragam as $rag) : ?>
                             <div class="card col-sm-12 col-md-6 col-lg-4 m-2" style="width: 18rem;">
                                 <img src="asset/img/<?= $rag["gambar"]; ?>" class="card-img-top" alt="...">
@@ -247,11 +250,12 @@ $layanan = query("SELECT * From layanan ORDER BY id_layanan DESC LIMIT 1");
                             </div>
                         <?php endforeach; ?>
                         <div class="card-body text-end me-5">
-                            <a href="ragamadmin.php" class="card-link">Lihat Selengkapnya ></a>
+                            <a href="admin/ragamadmin.php" class="card-link">Lihat Selengkapnya ></a>
                         </div>
 
                     </div>
                     <div class="row  d-flex justify-content-center ">
+                        <h2>Layanan</h2>
                         <?php foreach ($layanan as $lay) : ?>
                             <div class="card col-sm-12 col-md-6 col-lg-4 m-2" style="width: 18rem;">
                                 <img src="asset/img/<?= $lay["gambar"]; ?>" class="card-img-top" alt="...">
@@ -262,7 +266,7 @@ $layanan = query("SELECT * From layanan ORDER BY id_layanan DESC LIMIT 1");
                             </div>
                         <?php endforeach; ?>
                         <div class="card-body text-end me-5">
-                            <a href="layananadmin.php" class="card-link">Lihat Selengkapnya ></a>
+                            <a href="admin/layananadmin.php" class="card-link">Lihat Selengkapnya ></a>
                         </div>
 
                     </div>

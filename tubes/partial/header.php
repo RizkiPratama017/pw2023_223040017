@@ -26,6 +26,10 @@
             height: 70px;
             background-color: #f5f5f5;
         } */
+
+        ul {
+            list-style-type: none;
+        }
     </style>
     <title>Laman Indonesia</title>
 </head>

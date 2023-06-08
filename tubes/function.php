@@ -99,7 +99,7 @@ if (!function_exists('hapusragam')) {
     }
 }
 if (!function_exists('hapuslayanan')) {
-    function hapusnasional($id)
+    function hapuslayanan($id)
     {
         $conn = koneksi();
 
@@ -109,15 +109,67 @@ if (!function_exists('hapuslayanan')) {
     }
 }
 if (!function_exists('editnas')) {
-    function editnas($id, $judul, $gambar, $isi)
+    function editnas($id, $judul, $gambar, $isi, $hal)
     {
         $conn = koneksi();
 
         $query = "UPDATE nasional SET 
             judul = '$judul',
             gambar = '$gambar',
-            isi = '$isi'
+            isi = '$isi',
+            halaman = '$hal'
             WHERE id_nasional = '$id'
+            ";
+
+        mysqli_query($conn, $query) or die(mysqli_error($conn));
+        return mysqli_affected_rows($conn);
+    }
+}
+if (!function_exists('editsea')) {
+    function editsea($id, $judul, $gambar, $isi, $hal)
+    {
+        $conn = koneksi();
+
+        $query = "UPDATE asean SET 
+            judul = '$judul',
+            gambar = '$gambar',
+            isi = '$isi',
+            halaman = '$hal'
+            WHERE id_asean = '$id'
+            ";
+
+        mysqli_query($conn, $query) or die(mysqli_error($conn));
+        return mysqli_affected_rows($conn);
+    }
+}
+if (!function_exists('editrag')) {
+    function editrag($id, $judul, $gambar, $isi, $hal)
+    {
+        $conn = koneksi();
+
+        $query = "UPDATE ragam SET 
+            judul = '$judul',
+            gambar = '$gambar',
+            isi = '$isi',
+            halaman = '$hal'
+            WHERE id_ragam = '$id'
+            ";
+
+        mysqli_query($conn, $query) or die(mysqli_error($conn));
+        return mysqli_affected_rows($conn);
+    }
+}
+if (!function_exists('editlay')) {
+    function editlay($id, $judul, $gambar, $isi, $hal)
+    {
+        $conn = koneksi();
+
+        $query = "UPDATE layanan SET 
+            judul = '$judul',
+            gambar = '$gambar',
+            isi = '$isi',
+            halaman = '$hal'
+            WHERE id_layanan = '$id'
             ";
 
         mysqli_query($conn, $query) or die(mysqli_error($conn));
