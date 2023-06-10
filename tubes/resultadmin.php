@@ -37,7 +37,6 @@ $totalPages = isset($totalPages) ? $totalPages : 1;
 $currentPage = isset($currentPage) ? $currentPage : 1;
 ?>
 
-
 <h1 class="bg-danger text-white p-2">Portal Informasi Indonesia</h1>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
@@ -48,25 +47,25 @@ $currentPage = isset($currentPage) ? $currentPage : 1;
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+                    <a class="nav-link active" aria-current="page" href="dashboard.php">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Profil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="nasional.php">Nasional</a>
+                    <a class="nav-link" href="nasionaladmin.php">Nasional</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="asean.php">Asean</a>
+                    <a class="nav-link" href="aseanadmin.php">Asean</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="ragam.php">Ragam</a>
+                    <a class="nav-link" href="ragamadmin.php">Ragam</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="layanan.php">Layanan</a>
+                    <a class="nav-link" href="layananadmin.php">Layanan</a>
                 </li>
             </ul>
-            <form class="d-flex" action="result.php" method="get">
+            <form class="d-flex" action="resultadmin.php" method="get">
                 <input class="form-control me-2" type="search" name="keyword" id="keyword" placeholder="Cari.." autofocus autocomplete="off">
                 <button class="btn btn-outline-success" type="submit" name="search" id="search-button">Search</button>
             </form>
@@ -87,11 +86,11 @@ $currentPage = isset($currentPage) ? $currentPage : 1;
         <div class="row d-flex justify-content-center">
             <?php foreach ($hasil as $has) : ?>
                 <div class="card col-sm-12 col-md-6 col-lg-4 m-2" style="width: 18rem;">
-                    <a href="berita2.php?tipe=<?= $has['tipe'] ?>&id=<?= $has['id']; ?>">
+                    <a href="beritaadmin2.php?tipe=<?= $has['tipe'] ?>&id=<?= $has['id']; ?>">
                         <img src="img/<?= $has["gambar"]; ?>" class="card-img-top" alt="<?= $has["judul"]; ?>">
                     </a>
                     <div class="card-body">
-                        <a href="berita2.php?tipe=<?= $has['tipe'] ?>&id=<?= $has['id']; ?>">
+                        <a href="beritaadmin2.php?tipe=<?= $has['tipe'] ?>&id=<?= $has['id']; ?>">
                             <h5 class="card-title"><?= $has["judul"]; ?></h5>
                         </a>
                         <p class="card-text"><?= $has["isi"]; ?></p>
@@ -110,40 +109,42 @@ $currentPage = isset($currentPage) ? $currentPage : 1;
     <?php endif; ?>
 </div>
 
-<div class="pagination-container">
-    <nav aria-label="Page navigation example">
-        <ul class="pagination">
-            <?php if ($currentPage > 1) : ?>
-                <li class="page-item">
-                    <a class="page-link" href="result.php?page=<?= $currentPage - 1 ?>&keyword=<?= $keyword; ?>" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                </li>
-            <?php endif; ?>
+<div class="pagination justify-content-center">
+    <?php if ($currentPage > 1) : ?>
+        <a href="resultadmin.php?page=<?= $currentPage - 1; ?>" class="page-link">&laquo; Halaman Sebelumnya</a>
+    <?php endif; ?>
 
-            <?php for ($i = 1; $i <= $totalPages; $i++) : ?>
-                <?php if ($i == $currentPage) : ?>
-                    <li class="page-item active">
-                        <a class="page-link" href="result.php?page=<?= $i ?>&keyword=<?= $keyword; ?>"><?= $i; ?></a>
-                    </li>
-                <?php else : ?>
-                    <li class="page-item">
-                        <a class="page-link" href="result.php?page=<?= $i ?>&keyword=<?= $keyword; ?>"><?= $i; ?></a>
-                    </li>
-                <?php endif; ?>
-            <?php endfor; ?>
+    <?php for ($i = 1; $i <= $totalPages; $i++) : ?>
+        <?php if ($i == $currentPage) : ?>
+            <a href="resultadmin.php?page=<?= $i; ?>" class="page-link active"><?= $i; ?></a>
+        <?php else : ?>
+            <a href="resultadmin.php?page=<?= $i; ?>" class="page-link"><?= $i; ?></a>
+        <?php endif; ?>
+    <?php endfor; ?>
 
-            <?php if ($currentPage < $totalPages) : ?>
-                <li class="page-item">
-                    <a class="page-link" href="result.php?page=<?= $currentPage + 1 ?>&keyword=<?= $keyword; ?>" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </li>
-            <?php endif; ?>
-        </ul>
-    </nav>
+    <?php if ($currentPage < $totalPages) : ?>
+        <a href="resultadmin.php?page=<?= $currentPage + 1; ?>" class="page-link">Halaman Selanjutnya &raquo;</a>
+    <?php endif; ?>
 </div>
+<footer class=" footer mt-auto py-3 bg-danger text-white">
+    <div class="container">
+        <span>Portal Informasi Indonesia © 2023</span>
+        <span class="ikon float-end "><a href=""><img src="asset/ikon/fb.png" alt="facebook" class="footer-icon m-1"></a><a href=""><img src="asset/ikon/ig.png" alt="Instagram" class="footer-icon m-1"></a><a href=""><img src="asset/ikon/tw.png" alt="Twitter" class="footer-icon m-1"></a><a href=""><img src="asset/ikon/yt.png" alt="Youtube" class="footer-icon m-1"></a></span>
 
-<?php require('partial/footer.php'); ?>
+    </div>
+</footer>
+<script>
+    const keyword = document.getElementById("keyword");
+    const searchContainer = document.getElementById("search-container");
+
+    keyword.oninput = function() {
+        fetch("ajax/searchadmin.php?search=1&keyword=" + this.value)
+            .then((response) => response.text())
+            .then((data) => {
+                searchContainer.innerHTML = data;
+            })
+            .catch((error) => {
+                console.log("Error: ", error);
+            });
+    };
+</script>

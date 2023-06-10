@@ -1,5 +1,5 @@
-<?php require('../function.php');
-require('../partial/header.php');
+<?php require('function.php');
+require('partial/header.php');
 $limit = 12;
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
 
@@ -14,9 +14,10 @@ $totalpage = ceil($total_rows / $limit);
 ?>
 
 
+<?php require('partial/navadmin.php') ?>
 
 <div class="background-wrapper link-light">
-    <h2 class="mt-5 ms-3">Nasional</h2>
+    <h2 class="mt-5 ms-3"><a href="nasionaladmin.php" class="link-light">Nasional</a></h2>
     <a href="dashboard.php" class="link-light ms-4">Beranda</a>
     <div class="layer"></div>
     <div class="background-image"></div>
@@ -28,11 +29,15 @@ $totalpage = ceil($total_rows / $limit);
 <div class="row  d-flex justify-content-center ">
     <?php foreach ($nasional as $nas) : ?>
         <div class="card col-sm-12 col-md-6 col-lg-4 m-2" style="width: 18rem;">
-            <img src="asset/img/<?= $nas["gambar"]; ?>" class="card-img-top" alt="...">
+            <a href="beritaadmin.php?tipe=nasional&id=<?= $nas["id_nasional"]; ?>">
+                <img src="img/<?= $nas["gambar"]; ?>" class="card-img-top" alt="<?= $nas["judul"]; ?>">
+            </a>
             <div class="card-body">
-                <h5 class="card-title"><?= $nas["judul"]; ?></h5>
+                <a href="beritaadmin.php?tipe=nasional&id=<?= $nas["id_nasional"]; ?>">
+                    <h5 class="card-title"><?= $nas["judul"]; ?></h5>
+                </a>
                 <p class="card-text"> <?= $nas["isi"]; ?></p>
-                <a href="../edit/editnas.php?id=<?= $nas["id_nasional"]; ?>">edit</a>
+                <a href="edit/editnas.php?id=<?= $nas["id_nasional"]; ?>">edit</a>
                 <br>
                 <a href="hapus/hapusnas.php?id=<?= $nas["id_nasional"]; ?>" onclick="return confirm('yakin akan dihapus');">hapus</a>
 
@@ -59,4 +64,4 @@ $totalpage = ceil($total_rows / $limit);
 </div>
 
 
-<?php require('../partial/footer.php') ?>
+<?php require('partial/footer.php') ?>

@@ -17,7 +17,7 @@ $total_pages = ceil($total_rows / $limit);
 <?php require('partial/nav.php') ?>
 
 <div class="background-wrapper link-light">
-    <h2 class="mt-5 ms-3">Nasional</h2>
+    <h2 class="mt-5 ms-3"><a href="nasional.php" class="link-light">Nasional</a></h2>
     <a href="index.php" class="link-light ms-4">Beranda</a>
     <div class="layer"></div>
     <div class="background-image"></div>
@@ -27,12 +27,14 @@ $total_pages = ceil($total_rows / $limit);
 
 <div class="row d-flex justify-content-center">
     <?php foreach ($nasional as $nas) : ?>
-        <div class="card col-sm-12 col-md-6 col-lg-4 m-2" style="width: 18rem;">
-            <a href="detailnasional.php?id=<?= $nas["id_nasional"]; ?>">
-                <img src="asset/img/<?= $nas["gambar"]; ?>" class="card-img-top" alt="...">
+        <div class="card col-sm-12 col-md-6 col-lg-4 m-2" id="" style="width: 18rem;">
+            <a href="berita.php?tipe=nasional&id=<?= $nas["id_nasional"]; ?>">
+                <img src="img/<?= $nas["gambar"]; ?>" class="card-img-top" alt=".<?= $nas["judul"]; ?>">
             </a>
             <div class="card-body">
-                <h5 class="card-title"><?= $nas["judul"]; ?></h5>
+                <a href="berita.php?tipe=nasional&id=<?= $nas["id_nasional"]; ?>">
+                    <h5 class="card-title"><?= $nas["judul"]; ?></h5>
+                </a>
                 <p class="card-text"><?= $nas["isi"]; ?></p>
             </div>
         </div>

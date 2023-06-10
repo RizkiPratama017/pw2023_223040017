@@ -6,7 +6,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 1;
 
 $offset = ($page - 1) * $limit;
 
-$ragam = query("SELECT * FROM ragam ORDER BY id_ragam DESC LIMIT $limit OFFSET $offset");
+$layanan = query("SELECT * FROM layanan ORDER BY id_layanan DESC LIMIT $limit OFFSET $offset");
 
 $total_rows = countRowsnas();
 $total_pages = ceil($total_rows / $limit);
@@ -16,7 +16,7 @@ $total_pages = ceil($total_rows / $limit);
 <?php require('partial/nav.php') ?>
 
 <div class="background-wrapper link-light">
-    <h2 class="mt-5 ms-3">Ragam</h2>
+    <h2 class="mt-5 ms-3">Layanan</h2>
     <a href="index.php" class="link-light ms-4">Beranda</a>
     <div class="layer"></div>
     <div class="background-image"></div>
@@ -25,16 +25,16 @@ $total_pages = ceil($total_rows / $limit);
 <br>
 
 <div class="row  d-flex justify-content-center">
-    <?php foreach ($ragam as $rag) : ?>
+    <?php foreach ($layanan as $lay) : ?>
         <div class="card col-sm-12 col-md-6 col-lg-4 m-2" style="width: 18rem;">
-            <a href="berita.php?tipe=ragam&id=<?= $rag["id_ragam"]; ?>">
-                <img src="img/<?= $rag["gambar"]; ?>" class="card-img-top" alt="<?= $rag["judul"]; ?>">
+            <a href="berita.php?tipe=layanan&id=<?= $lay["id_layanan"]; ?>">
+                <img src="img/<?= $lay["gambar"]; ?>" class="card-img-top" alt="<?= $lay["judul"]; ?>">
             </a>
             <div class="card-body">
-                <a href="berita.php?tipe=ragam&id=<?= $rag["id_ragam"]; ?>">
-                    <h5 class="card-title"><?= $rag["judul"]; ?></h5>
+                <a href="berita.php?tipe=layanan&id=<?= $lay["id_layanan"]; ?>">
+                    <h5 class="card-title"><?= $lay["judul"]; ?></h5>
                 </a>
-                <p class="card-text"><?= $rag["isi"]; ?></p>
+                <p class="card-text"><?= $lay["isi"]; ?></p>
             </div>
         </div>
     <?php endforeach; ?>
@@ -42,19 +42,19 @@ $total_pages = ceil($total_rows / $limit);
 
 <div class="pagination justify-content-center">
     <?php if ($page > 1) : ?>
-        <a href="ragam.php?page=<?= $page - 1; ?>" class="page-link">&laquo; Halaman Sebelumnya</a>
+        <a href="layanan.php?page=<?= $page - 1; ?>" class="page-link">&laquo; Halaman Sebelumnya</a>
     <?php endif; ?>
 
     <?php for ($i = 1; $i <= $total_pages; $i++) : ?>
         <?php if ($i == $page) : ?>
-            <a href="ragam.php?page=<?= $i; ?>" class="page-link active"><?= $i; ?></a>
+            <a href="layanan.php?page=<?= $i; ?>" class="page-link active"><?= $i; ?></a>
         <?php else : ?>
-            <a href="ragam.php?page=<?= $i; ?>" class="page-link"><?= $i; ?></a>
+            <a href="layanan.php?page=<?= $i; ?>" class="page-link"><?= $i; ?></a>
         <?php endif; ?>
     <?php endfor; ?>
 
     <?php if ($page < $total_pages) : ?>
-        <a href="ragam.php?page=<?= $page + 1; ?>" class="page-link">Halaman Selanjutnya &raquo;</a>
+        <a href="layanan.php?page=<?= $page + 1; ?>" class="page-link">Halaman Selanjutnya &raquo;</a>
     <?php endif; ?>
 </div>
 

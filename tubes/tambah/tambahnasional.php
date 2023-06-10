@@ -2,48 +2,55 @@
 require('../function.php');
 require('../partial/header.php');
 $name = 'Tambah Nasional';
-//ketika tombol submit diklik
 
+// Ketika tombol submit diklik
 if (isset($_POST["tambah"])) {
+    $judul = htmlspecialchars($_POST['judul']);
+    $isi = htmlspecialchars($_POST['isi']);
+    $hal = htmlspecialchars($_POST['halaman']);
 
-    if (tambahnasional($_POST['judul'], $_POST['gambar'], $_POST['isi'], $_POST['halaman']) > 0) {
-        echo " <script>
-            alert('data berhasil ditambahkan');
+    $gambar = upload();
+    if (!$gambar) {
+        echo "<script>
+            alert('Terjadi kesalahan saat mengupload gambar');
+            window.location.href = 'tambahnasional.php'; 
         </script>";
-        header("Location: dashboard.php");
+        exit;
+    }
+
+    if (tambahnasional($judul, $gambar, $isi, $hal) > 0) {
+        echo "<script>
+            alert('Data berhasil ditambahkan');
+            window.location.href = '../dashboard.php';
+        </script>";
+        exit;
+    } else {
+        echo "<script>
+            alert('Data gagal ditambahkan');
+            window.location.href = 'tambahnasional.php'; 
+        </script>";
     }
 }
+?>
 
-
-if (isset($_POST['judul']) && isset($_POST['gambar']) && isset($_POST['isi']) && isset($_POST['halaman'])) {
-    $judul = $_POST['judul'];
-    $gambar = $_POST['gambar'];
-    $isi = $_POST['isi'];
-    $hal = $_POST['halaman'];
-
-    tambahnasional($judul, $gambar, $isi, $hal);
-} ?>
-
-<div class="continer-md d-flex justify-content-center lign-items-center mt-5">
-
-
-    <form action="" method="post">
+<div class="container-md d-flex justify-content-center align-items-center mt-5">
+    <form action="" method="post" enctype="multipart/form-data">
         <h1>Tambah Berita Nasional</h1>
-
         <div class="form-group">
-            <label for="judul" class="form-label">Judul : </label>
+            <label for="judul" class="form-label">Judul:</label>
             <input type="text" name="judul" id="judul" class="form-control" autocomplete="off">
         </div>
         <div class="form-group">
-            <label for="gambar" class="form-label">Gambar : </label>
-            <input type="text" name="gambar" id="gambar" class="form-control" autocomplete="off">
+            <label for="gambar" class="form-label">Gambar:</label>
+            <input type="file" name="gambar" id="gambar" class="gambar form-control" onchange="previewImage()">
+            <img src="../img/nophoto.jpg" width="120" class="img-preview d-block" id="img-preview">
         </div>
         <div class="form-group">
-            <label for="isi" class="form-label">Text : </label>
+            <label for="isi" class="form-label">Text:</label>
             <input type="text" name="isi" id="isi" class="form-control" autocomplete="off">
         </div>
         <div class="form-group">
-            <label for="halaman" class="form-label">Isi : </label>
+            <label for="halaman" class="form-label">Halaman:</label>
             <input type="text" name="halaman" id="halaman" class="form-control" autocomplete="off">
         </div>
         <div class="form-group mt-2">
@@ -51,3 +58,20 @@ if (isset($_POST['judul']) && isset($_POST['gambar']) && isset($_POST['isi']) &&
         </div>
     </form>
 </div>
+
+<script>
+    function previewImage() {
+        const gambar = document.querySelector("#gambar");
+        const imgPreview = document.querySelector("#img-preview");
+
+        if (gambar.files && gambar.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                imgPreview.src = e.target.result;
+            };
+            reader.readAsDataURL(gambar.files[0]);
+        } else {
+            imgPreview.src = "../img/nophoto.jpg";
+        }
+    }
+</script>

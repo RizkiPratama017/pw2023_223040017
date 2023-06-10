@@ -35,7 +35,7 @@ if (isset($_POST['judul']) && isset($_POST['gambar']) && isset($_POST['isi']) &&
 
 
 <div class="continer-md d-flex justify-content-center lign-items-center mt-5">
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
         <h1>Edit Berita Asean</h1>
         <input type="hidden" name="id" value="<?= $editsea["id_asean"]; ?>">
 
@@ -45,7 +45,8 @@ if (isset($_POST['judul']) && isset($_POST['gambar']) && isset($_POST['isi']) &&
         </div>
         <div class="form-group">
             <label for="gambar" class="form-label">Gambar : </label>
-            <input type="text" name="gambar" id="gambar" class="form-control" value="<?= $editsea["gambar"]; ?>">
+            <input type="file" name="gambar" id="gambar" class="form-control" onchange="previewImage()">
+            <img src="../img/nophoto.jpg" width="120" class="img-preview d-blok" id="img-preview">
         </div>
         <div class="form-group">
             <label for="isi" class="form-label">Text : </label>
@@ -60,3 +61,19 @@ if (isset($_POST['judul']) && isset($_POST['gambar']) && isset($_POST['isi']) &&
         </div>
     </form>
 </div>
+<script>
+    function previewImage() {
+        const gambar = document.querySelector("#gambar");
+        const imgPreview = document.querySelector("#img-preview");
+
+        if (gambar.files && gambar.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                imgPreview.src = e.target.result;
+            };
+            reader.readAsDataURL(gambar.files[0]);
+        } else {
+            imgPreview.src = "../img/nophoto.jpg";
+        }
+    }
+</script>

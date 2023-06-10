@@ -42,11 +42,11 @@ $currentPage = isset($currentPage) ? $currentPage : 1;
         <div class="row d-flex justify-content-center">
             <?php foreach ($hasil as $has) : ?>
                 <div class="card col-sm-12 col-md-6 col-lg-4 m-2" style="width: 18rem;">
-                    <a href="./berita2.php?tipe=<?= $has['tipe'] ?>&id=<?= $has['id']; ?>">
-                        <img src="./img/<?= $has["gambar"]; ?>" class="card-img-top" alt="...">
+                    <a href="./beritaadmin2.php?tipe=<?= $has['tipe'] ?>&id=<?= $has['id']; ?>">
+                        <img src="../img/<?= $has["gambar"]; ?>" class="card-img-top" alt="...">
                     </a>
                     <div class="card-body">
-                        <a href="./berita2.php?tipe=<?= $has['tipe'] ?>&id=<?= $has['id']; ?>">
+                        <a href="./beritaadmin2.php?tipe=<?= $has['tipe'] ?>&id=<?= $has['id']; ?>">
                             <h5 class="card-title"><?= $has["judul"]; ?></h5>
                         </a>
                         <p class="card-text"><?= $has["isi"]; ?></p>
@@ -64,3 +64,23 @@ $currentPage = isset($currentPage) ? $currentPage : 1;
         </div>
     <?php endif; ?>
 </div>
+
+<div class="pagination justify-content-center">
+    <?php if ($currentPage > 1) : ?>
+        <a href="searchadmin.php?page=<?= $currentPage - 1; ?>" class="page-link">&laquo; Previous Page</a>
+    <?php endif; ?>
+
+    <?php for ($i = 1; $i <= $totalPages; $i++) : ?>
+        <?php if ($i == $currentPage) : ?>
+            <a href="searchadmin.php?page=<?= $i; ?>" class="page-link active"><?= $i; ?></a>
+        <?php else : ?>
+            <a href="search.php?page=<?= $i; ?>" class="page-link"><?= $i; ?></a>
+        <?php endif; ?>
+    <?php endfor; ?>
+
+    <?php if ($currentPage < $totalPages) : ?>
+        <a href="searchadmin.php?page=<?= $currentPage + 1; ?>" class="page-link">Next Page &raquo;</a>
+    <?php endif; ?>
+</div>
+
+<?php require('../partial/footer.php'); ?>
