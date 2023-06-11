@@ -9,9 +9,8 @@ if (!isset($_SESSION['username']) || !isset($_SESSION['role'])) {
 
 require('../function.php');
 require('../partial/header.php');
-$name = 'Tambah Nasional';
+$name = 'Tambah Layanan';
 
-// Ketika tombol submit diklik
 // Ketika tombol submit diklik
 if (isset($_POST["tambah"])) {
     $judul = htmlspecialchars($_POST['judul']);
@@ -40,7 +39,6 @@ if (isset($_POST["tambah"])) {
         </script>";
     }
 }
-
 
 ?>
 

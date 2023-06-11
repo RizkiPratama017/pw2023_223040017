@@ -2,62 +2,73 @@
 require('../function.php');
 require('../partial/header.php');
 
-//ketika tombol submit diklik
-$id = $_GET["id"];
-
-$editrag = query("SELECT * FROM ragam WHERE id_ragam = $id")[0];
-
+// Ketika tombol submit diklik
 if (isset($_POST["tambah"])) {
+    $id = $_POST['id'];
+    $judul = $_POST['judul'];
+    $gambar_lama = $_POST['gambar_lama'];
+    $isi = $_POST['isi'];
+    $hal = htmlspecialchars($_POST['halaman']);
+    $hal = htmlspecialchars_decode($hal);
+    $hal = nl2br($hal);
 
-    if (editnas($editnas['id_ragam'], $_POST['judul'], $_POST['gambar'], $_POST['isi'], $_POST['halaman']) > 0) {
-        echo " <script>
-            alert('data berhasil diedit');
+    $gambar = upload();
+    if (!$gambar) {
+        echo "<script>
+        alert('Data berhasil diedit');
+        window.location.href = '../dashboard.php';
+    </script>";
+        return false;
+    }
+
+    if ($gambar == 'nophoto.jpg') {
+        $gambar = $gambar_lama;
+    }
+    if (editrag($id, $judul, $gambar, $isi, $hal) > 0) {
+        echo "<script>
+            alert('Data berhasil diedit');
+            window.location.href = '../ragamadmin.php';
         </script>";
-        header("Location: ../dashboard.php");
+        exit;
+    } else {
+        echo "<script>
+            alert('Data gagal diedit');
+            window.location.href = 'editrag.php?id=$id';
+        </script>";
+        exit;
     }
 }
 
-if (isset($_POST['judul']) && isset($_POST['gambar']) && isset($_POST['isi']) && isset($_POST['halaman'])) {
-    $id = $editrag["id_ragam"];
-    $judul = htmlspecialchars($_POST['judul']);
-    $gambar = htmlspecialchars($_POST['gambar']);
-    $isi = htmlspecialchars($_POST['isi']);
-    $hal = htmlspecialchars($_POST['halaman']);
-
-    // Memanggil fungsi editnas
-    editnas($id, $judul, $gambar, $isi, $hal);
-}
-
+$id = $_GET["id"];
+$editrag = query("SELECT * FROM ragam WHERE id_ragam = $id")[0];
 
 ?>
 
-
-
-
-<div class="continer-md d-flex justify-content-center lign-items-center mt-5">
+<div class="container-md d-flex justify-content-center align-items-center mt-5">
     <form action="" method="post" enctype="multipart/form-data">
         <h1>Edit Berita Ragam</h1>
         <input type="hidden" name="id" value="<?= $editrag["id_ragam"]; ?>">
 
         <div class="form-group">
-            <label for="judul">Judul : </label>
+            <label for="judul">Judul:</label>
             <input type="text" name="judul" id="judul" class="form-control" value="<?= $editrag["judul"]; ?>">
         </div>
         <div class="form-group">
-            <label for="gambar" class="form-label">Gambar : </label>
+            <input type="hidden" name="gambar_lama" value="<?= $editrag['gambar']; ?>">
+            <label for="gambar" class="form-label">Gambar:</label>
             <input type="file" name="gambar" id="gambar" class="form-control" onchange="previewImage()">
-            <img src="../img/nophoto.jpg" width="120" class="img-preview d-blok" id="img-preview">
+            <img src="../img/<?= $editrag['gambar']; ?>" width="120" class="img-preview d-block" id="img-preview">
         </div>
         <div class="form-group">
-            <label for="isi" class="form-label">Text : </label>
-            <textarea type="text" name="isi" id="isi" class="form-control" value="<?= $editrag["isi"]; ?>"></textarea>
+            <label for="isi" class="form-label">Text:</label>
+            <textarea name="isi" id="isi" class="form-control"><?= $editrag["isi"]; ?></textarea>
         </div>
         <div class="form-group">
-            <label for="halaman" class="form-label">isi : </label>
-            <textarea type="text" name="halaman" id="halaman" class="form-control" value="<?= $editrag["halaman"]; ?>"></textarea>
+            <label for="halaman" class="form-label">Halaman:</label>
+            <textarea name="halaman" id="halaman" class="form-control"><?= $editrag["halaman"]; ?></textarea>
         </div>
         <div>
-            <button type="submit" name="tambah">Edit</button>
+            <button type="submit" name="tambah" class="btn btn-primary">Edit</button>
         </div>
     </form>
 </div>

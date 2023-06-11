@@ -15,7 +15,9 @@ $name = 'Tambah Nasional';
 if (isset($_POST["tambah"])) {
     $judul = htmlspecialchars($_POST['judul']);
     $isi = htmlspecialchars($_POST['isi']);
-    $hal = htmlspecialchars_decode($_POST['halaman']);
+    $hal = htmlspecialchars($_POST['halaman']);
+    $hal = htmlspecialchars_decode($hal);
+    $hal = nl2br($hal);
 
     $gambar = upload();
     if (!$gambar) {

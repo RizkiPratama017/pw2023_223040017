@@ -12,11 +12,12 @@ require('../partial/header.php');
 $name = 'Tambah Asean';
 
 // Ketika tombol submit diklik
-// Ketika tombol submit diklik
 if (isset($_POST["tambah"])) {
     $judul = htmlspecialchars($_POST['judul']);
     $isi = htmlspecialchars($_POST['isi']);
     $hal = htmlspecialchars($_POST['halaman']);
+    $hal = htmlspecialchars_decode($hal);
+    $hal = nl2br($hal);
 
     $gambar = upload();
     if (!$gambar) {
@@ -27,7 +28,7 @@ if (isset($_POST["tambah"])) {
         exit;
     }
 
-    if (tambahasean($judul, $gambar, $isi, $hal) > 0) {
+    if (tambahasean($judul, $gambar, $isi, $hal)) {
         echo "<script>
             alert('Data berhasil ditambahkan');
             window.location.href = '../dashboard.php'; 
@@ -38,15 +39,14 @@ if (isset($_POST["tambah"])) {
             alert('Data gagal ditambahkan');
             window.location.href = 'tambahasean.php';
         </script>";
+        exit;
     }
 }
-
-
 ?>
 
 <div class="container-md d-flex justify-content-center align-items-center mt-5">
     <form action="" method="post" enctype="multipart/form-data">
-        <h1>Tambah Berita asean</h1>
+        <h1>Tambah Berita Asean</h1>
         <div class="form-group">
             <label for="judul" class="form-label">Judul:</label>
             <input type="text" name="judul" id="judul" class="form-control" autocomplete="off">
@@ -54,7 +54,7 @@ if (isset($_POST["tambah"])) {
         <div class="form-group">
             <label for="gambar" class="form-label">Gambar:</label>
             <input type="file" name="gambar" id="gambar" class="form-control" onchange="previewImage()">
-            <img src="../img/nophoto.jpg" width="120" class="img-preview d-blok" id="img-preview">
+            <img src="../img/nophoto.jpg" width="120" class="img-preview d-block" id="img-preview">
         </div>
         <div class="form-group">
             <label for="isi" class="form-label">Text:</label>
@@ -69,6 +69,7 @@ if (isset($_POST["tambah"])) {
         </div>
     </form>
 </div>
+
 <script>
     function previewImage() {
         const gambar = document.querySelector("#gambar");
