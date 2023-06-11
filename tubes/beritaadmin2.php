@@ -1,4 +1,12 @@
 <?php
+session_start();
+
+// Lakukan pengecekan apakah pengguna sudah login
+if (!isset($_SESSION['username']) || !isset($_SESSION['role'])) {
+    header("Location: login.php");
+    exit;
+}
+
 require('function.php');
 require('partial/header.php');
 
@@ -43,11 +51,6 @@ if (isset($_GET['id']) && isset($_GET['tipe'])) {
                     <h5 class="card-title"><?= $has["judul"]; ?></h5>
                     <p class="card-text"><?= $has["halaman"]; ?></p>
                 </div>
-                <div>
-                    <a href="editnas.php">Edit</a>
-                    <a href="hapusnas.php">Hapus</a>
-                </div>
-
             </div>
         <?php endforeach; ?>
     <?php else : ?>

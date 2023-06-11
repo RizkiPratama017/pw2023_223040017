@@ -1,4 +1,13 @@
-<?php require('function.php');
+<?php
+session_start();
+
+// Lakukan pengecekan apakah pengguna sudah login
+if (!isset($_SESSION['username']) || !isset($_SESSION['role'])) {
+    header("Location: login.php");
+    exit;
+}
+
+require('function.php');
 require('partial/header.php');
 $limit = 12;
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
@@ -37,9 +46,9 @@ $totalpage = ceil($total_rows / $limit);
                     <h5 class="card-title"><?= $sea["judul"]; ?></h5>
                 </a>
                 <p class="card-text"> <?= $sea["isi"]; ?></p>
-                <a href="edit/editsea.php?id=<?= $sea["id_asean"]; ?>">edit</a>
-                <br>
-                <a href="hapus/hapussea.php?id=<?= $sea["id_asean"]; ?>" onclick="return confirm('yakin akan dihapus');">hapus</a>
+                <a href="edit/editsea.php?id=<?= $sea["id_asean"]; ?>">edit |</a>
+
+                <a href="hapus/hapussea.php?id=<?= $sea["id_asean"]; ?>" onclick="return confirm('yakin akan dihapus');">| hapus</a>
 
             </div>
         </div>

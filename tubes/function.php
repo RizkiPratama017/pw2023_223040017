@@ -32,10 +32,11 @@ function upload()
     $tmp_file = $_FILES['gambar']['tmp_name'];
 
     if ($error == 4) {
-        echo "<script>
-            alert('Pilih gambar terlebih dahulu');
-        </script>";
-        return false;
+        // echo "<script>
+        //     alert('Pilih gambar terlebih dahulu');
+        // </script>";
+        // return false;
+        return 'nophoto.jpg';
     }
 
     $daftar_gambar = ['jpg', 'jpeg', 'png'];
@@ -193,13 +194,8 @@ if (!function_exists('editnas')) {
     {
         $conn = koneksi();
 
-        $query = "UPDATE nasional SET 
-            judul = '$judul',
-            gambar = '$gambar',
-            isi = '$isi',
-            halaman = '$hal'
-            WHERE id_nasional = '$id'
-            ";
+        $query = "UPDATE nasional SET judul='$judul', gambar='$gambar', isi='$isi', halaman='$hal' WHERE id_nasional='$id'";
+
 
         mysqli_query($conn, $query) or die(mysqli_error($conn));
         return mysqli_affected_rows($conn);
@@ -260,11 +256,22 @@ if (!function_exists('editlay')) {
 
 
 if (!function_exists('registrasi')) {
-    function registrasi($nama_dpn, $nama_blk, $username, $password)
+    function registrasi($namaDepan, $namaBelakang, $gambar, $username, $hashedPassword)
     {
         $conn = koneksi();
 
-        $query = "INSERT INTO admin (nama_dpn, nama_blk, username, pass) VALUES ('$nama_dpn', '$nama_blk', '$username', '$password')";
+        $query = "INSERT INTO admin (nama_dpn, nama_blk, gambar, username, pass) VALUES ('$namaDepan', '$namaBelakang', '$gambar', '$username', '$hashedPassword')";
+
+        mysqli_query($conn, $query) or die(mysqli_error($conn));
+        return mysqli_affected_rows($conn);
+    }
+}
+if (!function_exists('registrasi1')) {
+    function registrasi1($namaDepan, $namaBelakang, $gambar, $username, $hashedPassword)
+    {
+        $conn = koneksi();
+
+        $query = "INSERT INTO user (nama_dpn, nama_blk, gambar, username, pass) VALUES ('$namaDepan', '$namaBelakang', '$gambar', '$username', '$hashedPassword')";
 
         mysqli_query($conn, $query) or die(mysqli_error($conn));
         return mysqli_affected_rows($conn);

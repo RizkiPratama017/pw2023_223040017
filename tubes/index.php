@@ -1,4 +1,5 @@
-<?php require('function.php');
+<?php
+require('function.php');
 $nasionalup = query("SELECT * From nasional ORDER BY id_nasional DESC LIMIT 1");
 $nasional = query("SELECT * From nasional ORDER BY id_nasional DESC LIMIT 4");
 $aseanup = query("SELECT * From asean ORDER BY id_asean DESC LIMIT 1");
@@ -154,8 +155,8 @@ $layanan = query("SELECT * From layanan ORDER BY id_layanan DESC LIMIT 4");
 <p class="ms-5 mb-3"> <span class="strip me-2">—</span>Pendidikan - Kesehatan - Keuangan - Kependudukan - Perdagangan - Investasi - Kepabeanan - Keimigrasian - Berita -
 </p>
 <<div class="row d-flex justify-content-center">
-    <?php foreach ($layanan as $lay) : ?>
-        <div class="card col-sm-12 col-md-6 col-lg-4 m-2" style="width: 18rem;">
+    <div class="card col-sm-12 col-md-6 col-lg-4 m-2" style="width: 18rem;">
+        <?php foreach ($layanan as $lay) : ?>
             <a href="berita.php?tipe=layanan&id=<?= $lay["id_layanan"]; ?>">
                 <img src="img/<?= $lay["gambar"]; ?>" class="card-img-top" alt="<?= $lay["judul"]; ?>">
             </a>
@@ -165,8 +166,9 @@ $layanan = query("SELECT * From layanan ORDER BY id_layanan DESC LIMIT 4");
                 </a>
                 <p class="card-text"><?= $lay["isi"]; ?></p>
             </div>
-        </div>
-    <?php endforeach; ?>
+        <?php endforeach; ?>
+    </div>
+
     <div class="card-body text-end me-5">
         <a href="layanan.php" class="card-link">Lihat Selengkapnya ></a>
     </div>

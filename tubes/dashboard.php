@@ -1,9 +1,22 @@
-<?php require('function.php');
+<?php
+session_start();
+
+// Lakukan pengecekan apakah pengguna sudah login
+if (!isset($_SESSION['username']) || !isset($_SESSION['role'])) {
+    header("Location: login.php");
+    exit;
+}
+
+
+
+
+require('function.php');
 require('partial/header.php');
-$nasional = query("SELECT * From nasional ORDER BY id_nasional DESC LIMIT 1");
-$asean = query("SELECT * From asean ORDER BY id_asean DESC LIMIT 1");
-$ragam = query("SELECT * From ragam ORDER BY id_ragam DESC LIMIT 1");
-$layanan = query("SELECT * From layanan ORDER BY id_layanan DESC LIMIT 1");
+$nasional = query("SELECT * From nasional ORDER BY id_nasional DESC LIMIT 2");
+$asean = query("SELECT * From asean ORDER BY id_asean DESC LIMIT 2");
+$ragam = query("SELECT * From ragam ORDER BY id_ragam DESC LIMIT 2");
+$layanan = query("SELECT * From layanan ORDER BY id_layanan DESC LIMIT 2");
+
 ?>
 
 <!DOCTYPE html>
@@ -100,7 +113,7 @@ $layanan = query("SELECT * From layanan ORDER BY id_layanan DESC LIMIT 1");
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Login Screens:</h6>
                         <a class="collapse-item" href="login.php">Login</a>
-                        <a class="collapse-item" href="registrasi.php">Register</a>
+                        <a class="collapse-item" href="tambah/registrasiadmin.php">Register</a>
                     </div>
                 </div>
             </li>
@@ -170,9 +183,15 @@ $layanan = query("SELECT * From layanan ORDER BY id_layanan DESC LIMIT 1");
                         <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
+                        <li class="nav-item dropdown no-arrow p-0">
+                            <a class="nav-link dropdown-toggle m-0" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                    <?php
+                                    // Ganti dengan logika Anda untuk mendapatkan nama pengguna yang sedang login
+                                    $nama_pengguna = "Admin";
+                                    echo $nama_pengguna;
+                                    ?>
+                                </span>
                                 <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
@@ -181,16 +200,8 @@ $layanan = query("SELECT * From layanan ORDER BY id_layanan DESC LIMIT 1");
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
-                                </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="logout.php" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
@@ -218,7 +229,10 @@ $layanan = query("SELECT * From layanan ORDER BY id_layanan DESC LIMIT 1");
                                         <h5 class="card-title"><?= $nas["judul"]; ?></h5>
                                     </a>
                                     <p class="card-text"><?= $nas["id_nasional"]; ?>. <?= $nas["isi"]; ?></p>
+                                    <a href="edit/editnas.php?id=<?= $nas["id_nasional"]; ?>">edit |</a>
+                                    <a href="hapus/hapusnas.php?id=<?= $nas["id_nasional"]; ?>" onclick="return confirm('yakin akan dihapus');">| hapus</a>
                                 </div>
+
                             </div>
                         <?php endforeach; ?>
                         <div class="card-body text-end me-5">
@@ -238,6 +252,9 @@ $layanan = query("SELECT * From layanan ORDER BY id_layanan DESC LIMIT 1");
                                         <h5 class="card-title"><?= $sea["judul"]; ?></h5>
                                     </a>
                                     <p class="card-text"><?= $sea["id_asean"]; ?>. <?= $sea["isi"]; ?></p>
+                                    <a href="edit/editsea.php?id=<?= $sea["id_asean"]; ?>">edit |</a>
+
+                                    <a href="hapus/hapussea.php?id=<?= $sea["id_asean"]; ?>" onclick="return confirm('yakin akan dihapus');">| hapus</a>
                                 </div>
                             </div>
                         <?php endforeach; ?>
@@ -258,6 +275,9 @@ $layanan = query("SELECT * From layanan ORDER BY id_layanan DESC LIMIT 1");
                                         <h5 class="card-title"><?= $rag["judul"]; ?></h5>
                                     </a>
                                     <p class="card-text"><?= $rag["id_ragam"]; ?>. <?= $rag["isi"]; ?></p>
+                                    <a href="edit/editrag.php?id=<?= $rag["id_ragam"]; ?>">edit |</a>
+
+                                    <a href="hapus/hapusrag.php?id=<?= $rag["id_ragam"]; ?>" onclick="return confirm('yakin akan dihapus');">| hapus</a>
                                 </div>
                             </div>
                         <?php endforeach; ?>
@@ -278,6 +298,8 @@ $layanan = query("SELECT * From layanan ORDER BY id_layanan DESC LIMIT 1");
                                         <h5 class="card-title"><?= $lay["judul"]; ?></h5>
                                     </a>
                                     <p class="card-text"><?= $lay["id_layanan"]; ?>. <?= $lay["isi"]; ?></p>
+                                    <a href="edit/editlay.php?id=<?= $lay["id_layanan"]; ?>">edit |</a>
+                                    <a href="hapus/hapuslay.php?id=<?= $lay["id_layanan"]; ?>" onclick="return confirm('yakin akan dihapus');">| hapus</a>
                                 </div>
                             </div>
                         <?php endforeach; ?>
@@ -326,7 +348,7 @@ $layanan = query("SELECT * From layanan ORDER BY id_layanan DESC LIMIT 1");
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" href="logout.php">Logout</a>
                 </div>
             </div>
         </div>

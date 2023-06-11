@@ -50,11 +50,11 @@ if (isset($_POST['judul']) && isset($_POST['gambar']) && isset($_POST['isi']) &&
         </div>
         <div class="form-group">
             <label for="isi" class="form-label">Text : </label>
-            <input type="text" name="isi" id="isi" class="form-control" value="<?= $editsea["isi"]; ?>">
+            <textarea type="text" name="isi" id="isi" class="form-control" value="<?= $editsea["isi"]; ?>"></textarea>
         </div>
         <div class="form-group">
             <label for="halaman" class="form-label">isi : </label>
-            <input type="text" name="halaman" id="halaman" class="form-control" value="<?= $editsea["halaman"]; ?>">
+            <textarea type="text" name="halaman" id="halaman" class="form-control" value="<?= $editsea["halaman"]; ?>"></textarea>
         </div>
         <div>
             <button type="submit" name="tambah">Edit</button>

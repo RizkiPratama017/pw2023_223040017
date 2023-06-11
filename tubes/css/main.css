@@ -144,3 +144,6 @@ ul {
 .footer-icon {
   max-width: 30px;
 }
+
+@media print {
+}

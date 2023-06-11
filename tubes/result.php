@@ -1,4 +1,12 @@
 <?php
+session_start();
+
+// Lakukan pengecekan apakah pengguna sudah login
+if (!isset($_SESSION['username']) || !isset($_SESSION['role'])) {
+    header("Location: login.php");
+    exit;
+}
+
 require('function.php');
 require('partial/header.php');
 
@@ -110,40 +118,5 @@ $currentPage = isset($currentPage) ? $currentPage : 1;
     <?php endif; ?>
 </div>
 
-<div class="pagination-container">
-    <nav aria-label="Page navigation example">
-        <ul class="pagination">
-            <?php if ($currentPage > 1) : ?>
-                <li class="page-item">
-                    <a class="page-link" href="result.php?page=<?= $currentPage - 1 ?>&keyword=<?= $keyword; ?>" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                </li>
-            <?php endif; ?>
-
-            <?php for ($i = 1; $i <= $totalPages; $i++) : ?>
-                <?php if ($i == $currentPage) : ?>
-                    <li class="page-item active">
-                        <a class="page-link" href="result.php?page=<?= $i ?>&keyword=<?= $keyword; ?>"><?= $i; ?></a>
-                    </li>
-                <?php else : ?>
-                    <li class="page-item">
-                        <a class="page-link" href="result.php?page=<?= $i ?>&keyword=<?= $keyword; ?>"><?= $i; ?></a>
-                    </li>
-                <?php endif; ?>
-            <?php endfor; ?>
-
-            <?php if ($currentPage < $totalPages) : ?>
-                <li class="page-item">
-                    <a class="page-link" href="result.php?page=<?= $currentPage + 1 ?>&keyword=<?= $keyword; ?>" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </li>
-            <?php endif; ?>
-        </ul>
-    </nav>
-</div>
 
 <?php require('partial/footer.php'); ?>

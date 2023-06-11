@@ -1,4 +1,12 @@
 <?php
+session_start();
+
+// Lakukan pengecekan apakah pengguna sudah login
+if (!isset($_SESSION['username']) || !isset($_SESSION['role'])) {
+    header("Location: login.php");
+    exit;
+}
+
 require('../function.php');
 require('../partial/header.php');
 $name = 'Tambah Asean';
@@ -50,11 +58,11 @@ if (isset($_POST["tambah"])) {
         </div>
         <div class="form-group">
             <label for="isi" class="form-label">Text:</label>
-            <input type="text" name="isi" id="isi" class="form-control" autocomplete="off">
+            <textarea type="text" name="isi" id="isi" class="form-control" autocomplete="off"></textarea>
         </div>
         <div class="form-group">
             <label for="halaman" class="form-label">Halaman:</label>
-            <input type="text" name="halaman" id="halaman" class="form-control" autocomplete="off">
+            <textarea type="text" name="halaman" id="halaman" class="form-control" autocomplete="off"></textarea>
         </div>
         <div class="form-group mt-2">
             <button type="submit" name="tambah" class="btn btn-primary">Tambah</button>

@@ -1,4 +1,12 @@
 <?php
+session_start();
+
+// Lakukan pengecekan apakah pengguna sudah login
+if (!isset($_SESSION['username']) || !isset($_SESSION['role'])) {
+    header("Location: login.php");
+    exit;
+}
+
 require('../function.php');
 require('../partial/header.php');
 
@@ -64,23 +72,3 @@ $currentPage = isset($currentPage) ? $currentPage : 1;
         </div>
     <?php endif; ?>
 </div>
-
-<div class="pagination justify-content-center">
-    <?php if ($currentPage > 1) : ?>
-        <a href="searchadmin.php?page=<?= $currentPage - 1; ?>" class="page-link">&laquo; Previous Page</a>
-    <?php endif; ?>
-
-    <?php for ($i = 1; $i <= $totalPages; $i++) : ?>
-        <?php if ($i == $currentPage) : ?>
-            <a href="searchadmin.php?page=<?= $i; ?>" class="page-link active"><?= $i; ?></a>
-        <?php else : ?>
-            <a href="search.php?page=<?= $i; ?>" class="page-link"><?= $i; ?></a>
-        <?php endif; ?>
-    <?php endfor; ?>
-
-    <?php if ($currentPage < $totalPages) : ?>
-        <a href="searchadmin.php?page=<?= $currentPage + 1; ?>" class="page-link">Next Page &raquo;</a>
-    <?php endif; ?>
-</div>
-
-<?php require('../partial/footer.php'); ?>
