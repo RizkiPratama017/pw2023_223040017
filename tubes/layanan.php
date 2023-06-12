@@ -17,7 +17,7 @@ $offset = ($page - 1) * $limit;
 
 $layanan = query("SELECT * FROM layanan ORDER BY id_layanan DESC LIMIT $limit OFFSET $offset");
 
-$total_rows = countRowsnas();
+$total_rows = countRowslay();
 $total_pages = ceil($total_rows / $limit);
 
 ?>

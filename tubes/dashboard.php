@@ -7,7 +7,13 @@ if (!isset($_SESSION['username']) || !isset($_SESSION['role'])) {
     exit;
 }
 
+if ($_SESSION['role'] !== 'admin') {
+    header("Location: index.php"); // Arahkan ke halaman indeks jika bukan admin
+    exit;
+}
 
+$username = $_SESSION['username'];
+$role = $_SESSION['role'];
 
 
 require('function.php');
@@ -16,6 +22,22 @@ $nasional = query("SELECT * From nasional ORDER BY id_nasional DESC LIMIT 2");
 $asean = query("SELECT * From asean ORDER BY id_asean DESC LIMIT 2");
 $ragam = query("SELECT * From ragam ORDER BY id_ragam DESC LIMIT 2");
 $layanan = query("SELECT * From layanan ORDER BY id_layanan DESC LIMIT 2");
+
+
+$profile = query("SELECT * FROM admin WHERE username = '$username'");
+
+
+if (count($profile) === 1) {
+    $namaDepan = $profile[0]['nama_dpn'];
+    $namaBelakang = $profile[0]['nama_blk'];
+    $gambar = $profile[0]['gambar'];
+} else {
+
+    $namaDepan = 'Nama Depan tidak tersedia';
+    $namaBelakang = 'Nama Belakang tidak tersedia';
+    $gambar = 'img/nophoto.jpg';
+}
+
 
 ?>
 
@@ -54,7 +76,7 @@ $layanan = query("SELECT * From layanan ORDER BY id_layanan DESC LIMIT 2");
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">Admin</div>
+                <div class="sidebar-brand-text mx-3"><?= $username; ?></div>
             </a>
 
             <!-- Divider -->
@@ -183,20 +205,18 @@ $layanan = query("SELECT * From layanan ORDER BY id_layanan DESC LIMIT 2");
                         <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->
+
+                        <?php  ?>
                         <li class="nav-item dropdown no-arrow p-0">
                             <a class="nav-link dropdown-toggle m-0" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                                    <?php
-                                    // Ganti dengan logika Anda untuk mendapatkan nama pengguna yang sedang login
-                                    $nama_pengguna = "Admin";
-                                    echo $nama_pengguna;
-                                    ?>
+                                    <?= $username; ?>
                                 </span>
                                 <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="profileadm.php">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>

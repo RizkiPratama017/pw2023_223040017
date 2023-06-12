@@ -12,9 +12,6 @@
                     <a class="nav-link active" aria-current="page" href="dashboard.php">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="profiladmin.php">Profil</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="nasionaladmin.php">Nasional</a>
                 </li>
                 <li class="nav-item">
@@ -31,7 +28,7 @@
                         Profile
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="profile.php">Profile</a></li>
+                        <li><a class="dropdown-item" href="profileadm.php">Profile</a></li>
                         <li><a class="dropdown-item" href="logout.php">Logout</a></li>
                     </ul>
                 </li>

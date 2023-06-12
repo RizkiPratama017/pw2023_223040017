@@ -135,12 +135,6 @@ ul {
   list-style-type: none;
 }
 
-.carousel img {
-  width: 100%;
-  height: auto;
-  max-height: 400px; /* Sesuaikan tinggi gambar sesuai kebutuhan */
-  object-fit: cover; /* Untuk mengatur gambar agar sesuai dengan ukuran yang diberikan */
-}
 .footer-icon {
   max-width: 30px;
 }

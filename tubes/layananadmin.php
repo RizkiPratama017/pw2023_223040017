@@ -7,6 +7,12 @@ if (!isset($_SESSION['username']) || !isset($_SESSION['role'])) {
     exit;
 }
 
+if ($_SESSION['role'] !== 'admin') {
+    header("Location: index.php"); // Arahkan ke halaman indeks jika bukan admin
+    exit;
+}
+
+
 require('function.php');
 require('partial/header.php');
 $limit = 12;
@@ -16,8 +22,8 @@ $offset = ($page - 1) * $limit;
 
 $layanan = query("SELECT * FROM layanan ORDER BY id_layanan DESC LIMIT $limit OFFSET $offset");
 
-$total_rows = countRowsnas();
-$totalpage = ceil($total_rows / $limit);
+$total_rows = countRowslay();
+$total_pages = ceil($total_rows / $limit);
 
 
 ?>
@@ -38,9 +44,13 @@ $totalpage = ceil($total_rows / $limit);
 <div class="row  d-flex justify-content-center ">
     <?php foreach ($layanan as $lay) : ?>
         <div class="card col-sm-12 col-md-6 col-lg-4 m-2" style="width: 18rem;">
-            <img src="img/<?= $lay["gambar"]; ?>" class="card-img-top" alt="<?= $lay["judul"]; ?>">
+            <a href="beritaadmin.php?tipe=layanan&id=<?= $lay["id_layanan"]; ?>">
+                <img src="img/<?= $lay["gambar"]; ?>" class="card-img-top" alt="<?= $lay["judul"]; ?>">
+            </a>
             <div class="card-body">
-                <h5 class="card-title"><?= $lay["judul"]; ?></h5>
+                <a href="beritaadmin.php?tipe=layanan&id=<?= $lay["id_layanan"]; ?>">
+                    <h5 class="card-title"><?= $lay["judul"]; ?></h5>
+                </a>
                 <p class="card-text"> <?= $lay["isi"]; ?></p>
                 <a href="edit/editlay.php?id=<?= $lay["id_layanan"]; ?>">edit |</a>
                 <a href="hapus/hapuslay.php?id=<?= $lay["id_layanan"]; ?>" onclick="return confirm('yakin akan dihapus');">| hapus</a>
@@ -54,7 +64,7 @@ $totalpage = ceil($total_rows / $limit);
         <a href="layananadmin.php?page=<?= $page - 1; ?>" class="page-link">&laquo; Halaman Sebelumnya</a>
     <?php endif; ?>
 
-    <?php for ($i = 1; $i <= $totalpage; $i++) : ?>
+    <?php for ($i = 1; $i <= $total_pages; $i++) : ?>
         <?php if ($i == $page) : ?>
             <a href="layananadmin.php?page=<?= $i; ?>" class="page-link active"><?= $i; ?></a>
         <?php else : ?>
@@ -62,10 +72,9 @@ $totalpage = ceil($total_rows / $limit);
         <?php endif; ?>
     <?php endfor; ?>
 
-    <?php if ($page < $totalpage) : ?>
+    <?php if ($page < $total_pages) : ?>
         <a href="layananadmin.php?page=<?= $page + 1; ?>" class="page-link">Halaman Selanjutnya &raquo;</a>
     <?php endif; ?>
 </div>
-
 
 <?php require('partial/footer.php') ?>

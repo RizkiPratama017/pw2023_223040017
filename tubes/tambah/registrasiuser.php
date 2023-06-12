@@ -2,7 +2,7 @@
 require('../partial/header.php');
 require('../function.php');
 
-function registerUser($namaDepan, $namaBelakang, $gambar, $username, $password)
+function register1($namaDepan, $namaBelakang, $gambar, $username, $password)
 {
     $conn = koneksi();
 
@@ -19,10 +19,8 @@ function registerUser($namaDepan, $namaBelakang, $gambar, $username, $password)
         if (!$gambarName) {
             $error = "Terjadi kesalahan saat mengupload gambar";
         } else {
-            // Hash password
-            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
             // Insert data user ke database
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
             $sql = "INSERT INTO user (nama_dpn, nama_blk, gambar, username, pass) VALUES ('$namaDepan', '$namaBelakang', '$gambarName', '$username', '$hashedPassword')";
             if (mysqli_query($conn, $sql)) {
                 header("Location: ../login.php");
@@ -38,6 +36,8 @@ function registerUser($namaDepan, $namaBelakang, $gambar, $username, $password)
     return $error;
 }
 
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $namaDepan = $_POST['namaDepan'];
     $namaBelakang = $_POST['namaBelakang'];
@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'];
     $gambar = $_FILES['gambar'];
 
-    $error = registerUser($namaDepan, $namaBelakang, $gambar, $username, $password);
+    $error = register1($namaDepan, $namaBelakang, $gambar, $username, $password);
 }
 ?>
 

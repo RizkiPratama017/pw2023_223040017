@@ -252,6 +252,46 @@ if (!function_exists('editlay')) {
         return mysqli_affected_rows($conn);
     }
 }
+function edituser($id, $namaDepan, $namaBelakang, $gambar, $alamat)
+{
+    $conn = koneksi();
+
+
+
+
+    $query = "UPDATE user SET 
+            nama_dpn = '$namaDepan',
+            nama_blk = '$namaBelakang',
+            gambar = '$gambar',
+            alamat = '$alamat'
+            WHERE id_user = '$id'
+        ";
+
+
+
+    mysqli_query($conn, $query) or die(mysqli_error($conn));
+    return mysqli_affected_rows($conn);
+}
+function editadm($id, $namaDepan, $namaBelakang, $gambar, $alamat)
+{
+    $conn = koneksi();
+
+
+
+
+    $query = "UPDATE admin SET 
+            nama_dpn = '$namaDepan',
+            nama_blk = '$namaBelakang',
+            gambar = '$gambar'
+            WHERE id = '$id'
+        ";
+
+
+
+    mysqli_query($conn, $query) or die(mysqli_error($conn));
+    return mysqli_affected_rows($conn);
+}
+
 
 
 
@@ -314,4 +354,23 @@ function countRowslay()
     $result = mysqli_query($conn, "SELECT COUNT(*) AS total_rows FROM layanan");
     $row = mysqli_fetch_assoc($result);
     return $row['total_rows'];
+}
+
+function tambahLaporan($laporan, $alamat, $email, $id_user)
+{
+    $conn = koneksi();
+
+    $laporan = mysqli_real_escape_string($conn, $laporan);
+    $alamat = mysqli_real_escape_string($conn, $alamat);
+    $email = mysqli_real_escape_string($conn, $email);
+
+    $query = "INSERT INTO laporan (laporan, alamat, email, id_user) VALUES ('$laporan', '$alamat', '$email', $id_user)";
+
+    if (mysqli_query($conn, $query)) {
+        mysqli_close($conn);
+        return true;
+    } else {
+        mysqli_close($conn);
+        return false;
+    }
 }

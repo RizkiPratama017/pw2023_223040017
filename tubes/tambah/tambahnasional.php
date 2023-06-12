@@ -7,6 +7,12 @@ if (!isset($_SESSION['username']) || !isset($_SESSION['role'])) {
     exit;
 }
 
+if ($_SESSION['role'] !== 'admin') {
+    header("Location: index.php"); // Arahkan ke halaman indeks jika bukan admin
+    exit;
+}
+
+
 require('../function.php');
 require('../partial/header.php');
 $name = 'Tambah Nasional';

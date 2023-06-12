@@ -1,4 +1,17 @@
-<?php
+<?
+session_start();
+
+// Lakukan pengecekan apakah pengguna sudah login
+if (!isset($_SESSION['username']) || !isset($_SESSION['role'])) {
+    header("Location: login.php");
+    exit;
+}
+
+if ($_SESSION['role'] !== 'admin') {
+    header("Location: index.php"); // Arahkan ke halaman indeks jika bukan admin
+    exit;
+}
+
 require('../partial/header.php');
 require('../function.php');
 

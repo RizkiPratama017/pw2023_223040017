@@ -16,14 +16,14 @@ $offset = ($page - 1) * $limit;
 
 $asean = query("SELECT * FROM asean ORDER BY id_asean DESC LIMIT $limit OFFSET $offset");
 
-$total_rows = countRowsnas();
+$total_rows = countRowssea();
 $total_pages = ceil($total_rows / $limit);
 ?>
 
 <?php require('partial/nav.php'); ?>
 
 <div class="background-wrapper link-light">
-    <h2 class="mt-5 ms-3">asean</h2>
+    <h2 class="mt-5 ms-3">Asean</h2>
     <a href="index.php" class="link-light ms-4">Beranda</a>
     <div class="layer"></div>
     <div class="background-image"></div>

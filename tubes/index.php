@@ -9,9 +9,6 @@ $ragam = query("SELECT * From ragam ORDER BY id_ragam DESC LIMIT 4");
 $layananup = query("SELECT * From layanan ORDER BY id_layanan DESC LIMIT 1");
 $layanan = query("SELECT * From layanan ORDER BY id_layanan DESC LIMIT 4");
 
-
-
-
 ?>
 <?php require('partial/header.php'); ?>
 <?php require('partial/nav.php'); ?>
@@ -28,7 +25,7 @@ $layanan = query("SELECT * From layanan ORDER BY id_layanan DESC LIMIT 4");
         <?php foreach ($nasionalup as $nasi) : ?>
             <div class="carousel-item active">
                 <a href="berita.php?tipe=nasional&id=<?= $nasi["id_nasional"]; ?>">
-                    <img src="img/<?= $nasi["gambar"]; ?>" class="w-100 h-50 " alt="<?= $nasi["judul"]; ?>">
+                    <img src="img/<?= $nasi["gambar"]; ?>" class="w-100 h-60 " alt="<?= $nasi["judul"]; ?>">
                     <div class="carousel-caption d-md-block align-items-center">
                         <h4><?= $nasi["judul"]; ?></h4>
                     </div>
@@ -38,7 +35,7 @@ $layanan = query("SELECT * From layanan ORDER BY id_layanan DESC LIMIT 4");
         <?php foreach ($aseanup as $sean) : ?>
             <div class="carousel-item">
                 <a href="berita.php?tipe=asean&id=<?= $sean["id_asean"]; ?>">
-                    <img src="img/<?= $sean["gambar"]; ?>" class="d-block w-100 h-50" alt="...">
+                    <img src="img/<?= $sean["gambar"]; ?>" class="d-block w-100 h-60" alt="...">
                     <div class="carousel-caption d-none d-md-block align-items-center">
                         <h4><?= $sean["judul"]; ?></h4>
                     </div>
@@ -48,7 +45,7 @@ $layanan = query("SELECT * From layanan ORDER BY id_layanan DESC LIMIT 4");
         <?php foreach ($ragamup as $raga) : ?>
             <div class="carousel-item">
                 <a href="berita.php?tipe=ragam&id=<?= $raga["id_ragam"]; ?>">
-                    <img src="img/<?= $raga["gambar"]; ?>" class="d-block w-100 h-50" alt="...">
+                    <img src="img/<?= $raga["gambar"]; ?>" class="d-block w-100 h-60" alt="...">
                     <div class="carousel-caption d-none d-md-block align-items-center">
                         <h4><?= $raga["judul"]; ?></h4>
                     </div>
@@ -58,7 +55,7 @@ $layanan = query("SELECT * From layanan ORDER BY id_layanan DESC LIMIT 4");
         <?php foreach ($layananup as $laya) : ?>
             <div class="carousel-item">
                 <a href="berita.php?tipe=layanan&id=<?= $laya["id_layanan"]; ?>">
-                    <img src="img/<?= $laya["gambar"]; ?>" class="d-block w-100 h-50" alt="...">
+                    <img src="img/<?= $laya["gambar"]; ?>" class="d-block w-100 h-60" alt="...">
                     <div class="carousel-caption d-none d-md-block align-items-center">
                         <h4><?= $laya["judul"]; ?></h4>
                     </div>
@@ -155,8 +152,8 @@ $layanan = query("SELECT * From layanan ORDER BY id_layanan DESC LIMIT 4");
 <p class="ms-5 mb-3"> <span class="strip me-2">—</span>Pendidikan - Kesehatan - Keuangan - Kependudukan - Perdagangan - Investasi - Kepabeanan - Keimigrasian - Berita -
 </p>
 <<div class="row d-flex justify-content-center">
-    <div class="card col-sm-12 col-md-6 col-lg-4 m-2" style="width: 18rem;">
-        <?php foreach ($layanan as $lay) : ?>
+    <?php foreach ($layanan as $lay) : ?>
+        <div class="card col-sm-12 col-md-6 col-lg-4 m-2" style="width: 18rem;">
             <a href="berita.php?tipe=layanan&id=<?= $lay["id_layanan"]; ?>">
                 <img src="img/<?= $lay["gambar"]; ?>" class="card-img-top" alt="<?= $lay["judul"]; ?>">
             </a>
@@ -166,8 +163,8 @@ $layanan = query("SELECT * From layanan ORDER BY id_layanan DESC LIMIT 4");
                 </a>
                 <p class="card-text"><?= $lay["isi"]; ?></p>
             </div>
-        <?php endforeach; ?>
-    </div>
+        </div>
+    <?php endforeach; ?>
 
     <div class="card-body text-end me-5">
         <a href="layanan.php" class="card-link">Lihat Selengkapnya ></a>

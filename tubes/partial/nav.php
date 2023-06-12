@@ -1,4 +1,6 @@
 <!-- NAVBAR -->
+
+
 <h1 class="bg-danger text-white p-2">Portal Informasi Indonesia</h1>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
@@ -35,6 +37,10 @@
                 <li class="nav-item">
                     <a class="nav-link" href="cetak.php" target="_blank">Cetak</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="lapor.php">Lapor!</a>
+                </li>
+
 
 
             </ul>

@@ -7,6 +7,11 @@ if (!isset($_SESSION['username']) || !isset($_SESSION['role'])) {
     exit;
 }
 
+if ($_SESSION['role'] !== 'admin') {
+    header("Location: index.php"); // Arahkan ke halaman indeks jika bukan admin
+    exit;
+}
+
 require('../function.php');
 require('../partial/header.php');
 
@@ -51,7 +56,7 @@ $currentPage = isset($currentPage) ? $currentPage : 1;
             <?php foreach ($hasil as $has) : ?>
                 <div class="card col-sm-12 col-md-6 col-lg-4 m-2" style="width: 18rem;">
                     <a href="./beritaadmin2.php?tipe=<?= $has['tipe'] ?>&id=<?= $has['id']; ?>">
-                        <img src="../img/<?= $has["gambar"]; ?>" class="card-img-top" alt="...">
+                        <img src="./img/<?= $has["gambar"]; ?>" class="card-img-top" alt="...">
                     </a>
                     <div class="card-body">
                         <a href="./beritaadmin2.php?tipe=<?= $has['tipe'] ?>&id=<?= $has['id']; ?>">

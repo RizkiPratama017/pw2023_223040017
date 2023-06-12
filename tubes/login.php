@@ -2,14 +2,16 @@
 require('partial/header.php');
 session_start();
 require 'function.php';
-//cek cookie 
+
+// Cek cookie 
 if (isset($_COOKIE['login'])) {
     if ($_COOKIE['login'] == 'true') {
         $_SESSION['login'] = 'true';
     }
 }
+
 // Lakukan pengecekan apakah pengguna sudah login
-if (isset($_SESSION['username']) || isset($_SESSION['role'])) {
+if (isset($_SESSION['username']) && isset($_SESSION['role'])) {
     if ($_SESSION['role'] == 'admin') {
         header("Location: dashboard.php");
         exit;
@@ -18,8 +20,6 @@ if (isset($_SESSION['username']) || isset($_SESSION['role'])) {
         exit;
     }
 }
-
-
 
 function loginUser($username, $password)
 {
@@ -32,19 +32,22 @@ function loginUser($username, $password)
     if (mysqli_num_rows($result) == 1) {
         $row = mysqli_fetch_assoc($result);
         $hashedPassword = $row['pass'];
+        $id_user = $row['id_user'];
 
         if (password_verify($password, $hashedPassword)) {
             $_SESSION['username'] = $username;
-            $_SESSION['role'] = 'user'; // set role sebagai user
-            $_SESSION['login'] = 'true';
+            $_SESSION['role'] = 'user'; // Set role sebagai user
 
-
-            //cek remember me
-
+            // Cek remember me
             if (isset($_POST['remember'])) {
-                //buat cookie
+                // Buat cookie
                 setcookie('login', 'true');
             }
+
+            // Ambil id_user dari database berdasarkan username
+            $profile = query("SELECT id_user FROM user WHERE username = '$username'");
+            $_SESSION['id_user'] = $profile[0]['id_user'];
+
             header("Location: index.php");
             exit;
         } else {
@@ -61,7 +64,7 @@ function loginUser($username, $password)
 
             if (password_verify($password, $hashedPassword)) {
                 $_SESSION['username'] = $username;
-                $_SESSION['role'] = 'admin'; // set role sebagai admin
+                $_SESSION['role'] = 'admin'; // Set role sebagai admin
                 header("Location: dashboard.php");
                 exit;
             } else {

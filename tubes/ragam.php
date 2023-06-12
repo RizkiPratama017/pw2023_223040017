@@ -16,7 +16,7 @@ $offset = ($page - 1) * $limit;
 
 $ragam = query("SELECT * FROM ragam ORDER BY id_ragam DESC LIMIT $limit OFFSET $offset");
 
-$total_rows = countRowsnas();
+$total_rows = countRowsrag();
 $total_pages = ceil($total_rows / $limit);
 
 ?>

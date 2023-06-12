@@ -16,6 +16,8 @@ if (isset($_POST["tambah"])) {
     $judul = htmlspecialchars($_POST['judul']);
     $isi = htmlspecialchars($_POST['isi']);
     $hal = htmlspecialchars($_POST['halaman']);
+    $hal = htmlspecialchars_decode($hal);
+    $hal = nl2br($hal);
 
     $gambar = upload();
     if (!$gambar) {

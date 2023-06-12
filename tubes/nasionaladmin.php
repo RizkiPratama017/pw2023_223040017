@@ -7,6 +7,14 @@ if (!isset($_SESSION['username']) || !isset($_SESSION['role'])) {
     exit;
 }
 
+if ($_SESSION['role'] !== 'admin') {
+    header("Location: index.php"); // Arahkan ke halaman indeks jika bukan admin
+    exit;
+}
+
+
+
+
 require('function.php');
 require('partial/header.php');
 $limit = 12;
@@ -17,8 +25,7 @@ $offset = ($page - 1) * $limit;
 $nasional = query("SELECT * FROM nasional ORDER BY id_nasional DESC LIMIT $limit OFFSET $offset");
 
 $total_rows = countRowsnas();
-$totalpage = ceil($total_rows / $limit);
-
+$total_pages = ceil($total_rows / $limit);
 
 ?>
 
@@ -58,7 +65,7 @@ $totalpage = ceil($total_rows / $limit);
         <a href="nasionaladmin.php?page=<?= $page - 1; ?>" class="page-link">&laquo; Halaman Sebelumnya</a>
     <?php endif; ?>
 
-    <?php for ($i = 1; $i <= $totalpage; $i++) : ?>
+    <?php for ($i = 1; $i <= $total_pages; $i++) : ?>
         <?php if ($i == $page) : ?>
             <a href="nasionaladmin.php?page=<?= $i; ?>" class="page-link active"><?= $i; ?></a>
         <?php else : ?>
@@ -66,10 +73,9 @@ $totalpage = ceil($total_rows / $limit);
         <?php endif; ?>
     <?php endfor; ?>
 
-    <?php if ($page < $totalpage) : ?>
+    <?php if ($page < $total_pages) : ?>
         <a href="nasionaladmin.php?page=<?= $page + 1; ?>" class="page-link">Halaman Selanjutnya &raquo;</a>
     <?php endif; ?>
 </div>
-
 
 <?php require('partial/footer.php') ?>

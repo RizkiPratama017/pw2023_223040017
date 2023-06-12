@@ -7,6 +7,12 @@ if (!isset($_SESSION['username']) || !isset($_SESSION['role'])) {
     exit;
 }
 
+if ($_SESSION['role'] !== 'admin') {
+    header("Location: index.php"); // Arahkan ke halaman indeks jika bukan admin
+    exit;
+}
+
+
 require('function.php');
 require('partial/header.php');
 $limit = 12;
@@ -16,7 +22,7 @@ $offset = ($page - 1) * $limit;
 
 $ragam = query("SELECT * FROM ragam ORDER BY id_ragam DESC LIMIT $limit OFFSET $offset");
 
-$total_rows = countRowsnas();
+$total_rows = countRowsrag();
 $totalpage = ceil($total_rows / $limit);
 
 
