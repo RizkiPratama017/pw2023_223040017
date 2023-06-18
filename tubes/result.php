@@ -1,11 +1,7 @@
 <?php
 session_start();
 
-// Lakukan pengecekan apakah pengguna sudah login
-if (!isset($_SESSION['username']) || !isset($_SESSION['role'])) {
-    header("Location: login.php");
-    exit;
-}
+
 
 require('function.php');
 require('partial/header.php');
@@ -59,9 +55,6 @@ $currentPage = isset($currentPage) ? $currentPage : 1;
                     <a class="nav-link active" aria-current="page" href="index.php">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Profil</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="nasional.php">Nasional</a>
                 </li>
                 <li class="nav-item">
@@ -73,6 +66,22 @@ $currentPage = isset($currentPage) ? $currentPage : 1;
                 <li class="nav-item">
                     <a class="nav-link" href="layanan.php">Layanan</a>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Profile
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="profile.php">Profile</a></li>
+                        <li><a class="dropdown-item" href="logout.php">Logout</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="cetak.php" target="_blank">Cetak</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="lapor.php">Lapor!</a>
+                </li>
+
             </ul>
             <form class="d-flex" action="result.php" method="get">
                 <input class="form-control me-2" type="search" name="keyword" id="keyword" placeholder="Cari.." autofocus autocomplete="off">

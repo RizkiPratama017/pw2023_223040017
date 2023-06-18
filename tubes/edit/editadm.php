@@ -6,6 +6,10 @@ if (!isset($_SESSION['username']) || !isset($_SESSION['role'])) {
     header("Location: login.php");
     exit;
 }
+if ($_SESSION['role'] !== 'admin') {
+    header("Location: index.php"); // Arahkan ke halaman indeks jika bukan admin
+    exit;
+}
 
 require('../function.php');
 require('../partial/header.php');

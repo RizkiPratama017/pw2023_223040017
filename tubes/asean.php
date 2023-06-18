@@ -1,11 +1,7 @@
 <?php
 session_start();
 
-// Lakukan pengecekan apakah pengguna sudah login
-if (!isset($_SESSION['username']) || !isset($_SESSION['role'])) {
-    header("Location: login.php");
-    exit;
-}
+
 
 require('function.php');
 require('partial/header.php');
@@ -35,7 +31,7 @@ $total_pages = ceil($total_rows / $limit);
     <?php foreach ($asean as $sea) : ?>
         <div class="card col-sm-12 col-md-6 col-lg-4 m-2" style="width: 18rem;">
             <a href="berita.php?tipe=asean&id=<?= $sea["id_asean"]; ?>">
-                <img src="asset/img/<?= $sea["gambar"]; ?>" class="card-img-top" alt="<?= $sea["judul"]; ?>">
+                <img src="img/<?= $sea["gambar"]; ?>" class="card-img-top" alt="<?= $sea["judul"]; ?>">
             </a>
             <div class="card-body">
                 <a href="berita.php?tipe=asean&id=<?= $sea["id_asean"]; ?>">

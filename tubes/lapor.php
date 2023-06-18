@@ -57,5 +57,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <button type="submit" class="btn btn-primary">Kirim</button>
     </form>
 </div>
+<br><br>
 
 <?php require('partial/footer.php') ?>

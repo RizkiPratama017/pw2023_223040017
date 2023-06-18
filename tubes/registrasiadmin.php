@@ -1,4 +1,4 @@
-<?php
+<?
 session_start();
 
 // Lakukan pengecekan apakah pengguna sudah login
@@ -51,8 +51,6 @@ function registerAdmin($namaDepan, $namaBelakang, $gambar, $username, $password)
     return $error;
 }
 
-$error = "";
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $namaDepan = $_POST['namaDepan'];
     $namaBelakang = $_POST['namaBelakang'];
@@ -64,19 +62,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>Registrasi Admin</title>
-    <!-- Tambahkan CSS sesuai kebutuhan -->
-</head>
-
 <body>
     <div class="container-md d-flex justify-content-center align-items-center mt-5">
         <form method="POST" action="" enctype="multipart/form-data">
             <h2 class="header mb-4">Registrasi Admin</h2>
-            <?php if (!empty($error)) { ?>
+            <?php if (isset($error)) { ?>
                 <p><?php echo $error; ?></p>
             <?php } ?>
             <div class="form-group">
@@ -90,15 +80,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="form-group">
                 <label for="gambar" class="form-label">Gambar:</label>
                 <input type="file" name="gambar" id="gambar" class="form-control" onchange="previewImage()">
-                <img src="../img/nophoto.jpg" width="120" class="img-preview d-block m-2" id="img-preview">
+                <img src="../img/nophoto.jpg" width="120" class="img-preview d-blok m-2" id="img-preview">
             </div>
             <div class="form-group">
                 <label for="username" class="form-label">Username:</label>
-                <input type="text" name="username" id="username" required class="form-control m-2" autocomplete="off">
+                <input type="text" name="username" id="username" required class="form-control m=2 m-2" autocomplete="off">
             </div>
             <div class="form-group">
                 <label for="password" class="form-label">Password:</label>
-                <input type="password" name="password" id="password" required class="form-control m-2" autocomplete="off">
+                <input type="password" name="password" id="password" required class="form-control m-2 " autocomplete="off">
             </div>
             <input type="submit" value="Register">
         </form>

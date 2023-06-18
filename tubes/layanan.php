@@ -2,11 +2,7 @@
 
 session_start();
 
-// Lakukan pengecekan apakah pengguna sudah login
-if (!isset($_SESSION['username']) || !isset($_SESSION['role'])) {
-    header("Location: login.php");
-    exit;
-}
+
 
 require('function.php');
 require('partial/header.php');
